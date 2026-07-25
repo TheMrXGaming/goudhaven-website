@@ -2,6 +2,8 @@
   const config = window.GOUDHAVEN_CONFIG || {};
   const discordUrl = config.discordUrl || "#";
   const fivemUrl = config.fivemJoinUrl || "https://cfx.re/join/96oe6e";
+  const tebexUrl = config.tebexUrl || "https://goud-haven.tebex.io/";
+  const apvUrl = config.apvUrl || "#";
 
   document.querySelectorAll(".js-discord-link").forEach(link => {
     link.href = discordUrl;
@@ -15,6 +17,14 @@
 
   document.querySelectorAll(".js-fivem-link").forEach(link => {
     link.href = fivemUrl;
+  });
+
+  document.querySelectorAll(".js-tebex-link").forEach(link => {
+    link.href = tebexUrl;
+  });
+
+  document.querySelectorAll(".js-apv-link").forEach(link => {
+    link.href = apvUrl;
   });
 
   const joinCode = document.querySelector("#join-code");
@@ -34,18 +44,6 @@
     });
   }
 
-  const rulesLink = document.querySelector("#rules-link");
-  if (rulesLink) {
-    rulesLink.href = discordUrl;
-    rulesLink.target = "_blank";
-    rulesLink.rel = "noopener";
-    rulesLink.addEventListener("click", event => {
-      if (!discordUrl || discordUrl.includes("JOUW-LINK")) {
-        event.preventDefault();
-        showToast("Vul eerst jouw Discord-link in via config.js");
-      }
-    });
-  }
 
   const year = document.querySelector("#current-year");
   if (year) year.textContent = new Date().getFullYear();

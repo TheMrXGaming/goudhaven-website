@@ -9,6 +9,8 @@ window.GOUDHAVEN_CONFIG = {
 
   // Vervang dit door jouw echte Discord-uitnodigingslink.
   discordUrl: "https://discord.gg/goudhaven",
+  tebexUrl: "https://goud-haven.tebex.io/",
+  apvUrl: "https://docs.google.com/document/d/1BhoKJs0U9Dikg2I0L1UwxRqYikWFUrm-DGUoyEilx24/edit?usp=sharing",
 
   // Optioneel: laat de tekst op de serverkaart aanpassen.
   serverStatusText: "Server beschikbaar",
