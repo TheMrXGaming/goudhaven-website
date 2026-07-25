@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0d">
+  <meta name="description" content="GoudHaven Roleplay – een Nederlandse FiveM-roleplaystad waar jouw verhaal begint. Join de stad en onze community.">
+  <meta property="og:title" content="GoudHaven Roleplay">
+  <meta property="og:description" content="Waar jouw verhaal begint. Join onze Nederlandse FiveM-roleplaystad.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://goud-haven.nl/">
+  <meta property="og:image" content="https://goud-haven.nl/social-preview.svg">
+  <title>GoudHaven Roleplay | Waar jouw verhaal begint</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="background-glow background-glow-one"></div>
+  <div class="background-glow background-glow-two"></div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="GoudHaven home">
+        <span class="brand-mark">GH</span>
+        <span>
+          <strong>GoudHaven</strong>
+          <small>ROLEPLAY</small>
+        </span>
+      </a>
+
+      <button class="menu-button" type="button" aria-label="Menu openen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Hoofdnavigatie">
+        <a href="#over">Over de stad</a>
+        <a href="#mogelijkheden">Mogelijkheden</a>
+        <a href="#starten">Starten</a>
+        <a class="nav-join js-discord-link" href="#" target="_blank" rel="noopener">Discord</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> Nederlandse FiveM Roleplay</div>
+          <h1>Waar jouw <em>verhaal</em> begint.</h1>
+          <p class="hero-text">
+            Bouw een leven op, ontmoet nieuwe mensen en schrijf je eigen verhaal in GoudHaven.
+            Van hulpdiensten en ondernemerschap tot het criminele circuit: jij bepaalt je route.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary js-fivem-link" href="#" target="_blank" rel="noopener">
+              <span>▶</span> Join de stad
+            </a>
+            <a class="button button-secondary js-discord-link" href="#" target="_blank" rel="noopener">
+              Join onze Discord
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div>
+              <strong>Actieve community</strong>
+              <span>Gezellig, betrokken en groeiend</span>
+            </div>
+            <div>
+              <strong>Unieke roleplay</strong>
+              <span>Jouw keuzes bepalen het verhaal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="server-card">
+          <div class="server-card-top">
+            <span class="status-dot"></span>
+            <span id="server-status-text">Server beschikbaar</span>
+          </div>
+          <div class="city-mark">
+            <div class="city-logo">GH</div>
+            <div>
+              <span>Welkom in</span>
+              <strong>GoudHaven</strong>
+            </div>
+          </div>
+
+          <div class="server-details">
+            <div>
+              <span>Server</span>
+              <strong>GoudHaven Roleplay</strong>
+            </div>
+            <div>
+              <span>Type</span>
+              <strong>Nederlandse roleplay</strong>
+            </div>
+            <div>
+              <span>Verbinden</span>
+              <strong id="join-code">cfx.re/join/96oe6e</strong>
+            </div>
+          </div>
+
+          <a class="server-card-button js-fivem-link" href="#" target="_blank" rel="noopener">
+            Nu verbinden
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-divider"></div>
+    </section>
+
+    <section class="section" id="over">
+      <div class="container">
+        <div class="section-heading centered">
+          <span class="section-label">Welkom in de stad</span>
+          <h2>Meer dan alleen een server</h2>
+          <p>
+            GoudHaven is een plek waar verhalen ontstaan. Speel serieus roleplay,
+            ontwikkel je personage en word onderdeel van een hechte community.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">⚓</div>
+            <h3>Levende stad</h3>
+            <p>Een dynamische wereld met burgers, bedrijven, hulpdiensten en een eigen economie.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🤝</div>
+            <h3>Sterke community</h3>
+            <p>Nieuwe spelers zijn welkom. Samen maken we de stad leuk, eerlijk en gezellig.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🎭</div>
+            <h3>Jouw eigen verhaal</h3>
+            <p>Kies je carrière, vorm relaties en laat je personage groeien door echte roleplay.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="mogelijkheden">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">Ontdek GoudHaven</span>
+          <h2>Welke kant kies jij?</h2>
+          <p>Er is altijd iets te doen. Begin klein, bouw je naam op en ontdek alle mogelijkheden.</p>
+        </div>
+
+        <div class="role-grid">
+          <article class="role-card">
+            <span class="role-number">01</span>
+            <h3>Hulpdiensten</h3>
+            <p>Maak carrière bij politie, Koninklijke Marechaussee, ambulance, brandweer of pechhulp.</p>
+          </article>
+          <article class="role-card">
+            <span class="role-number">02</span>
+            <h3>Ondernemen</h3>
+            <p>Start een bedrijf, werk samen met anderen en bouw jouw plek in de economie van de stad.</p>
+          </article>
+          <article class="role-card">
+            <span class="role-number">03</span>
+            <h3>Burgerleven</h3>
+            <p>Verdien geld, koop voertuigen, maak vrienden en ontdek de vele legale activiteiten.</p>
+          </article>
+          <article class="role-card">
+            <span class="role-number">04</span>
+            <h3>Crimineel circuit</h3>
+            <p>Neem risico's, vorm een groep en bouw een reputatie op — zolang de roleplay vooropstaat.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="starten">
+      <div class="container">
+        <div class="section-heading centered">
+          <span class="section-label">Binnen een paar minuten spelen</span>
+          <h2>Zo begin je in GoudHaven</h2>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <span>1</span>
+            <div>
+              <h3>Join Discord</h3>
+              <p>Lees de informatie, bekijk de regels en maak kennis met onze community.</p>
+            </div>
+          </article>
+          <article class="step">
+            <span>2</span>
+            <div>
+              <h3>Start FiveM</h3>
+              <p>Zorg dat GTA V en FiveM geïnstalleerd zijn en dat je account gereed is.</p>
+            </div>
+          </article>
+          <article class="step">
+            <span>3</span>
+            <div>
+              <h3>Betreed de stad</h3>
+              <p>Klik op de join-knop, maak je personage aan en begin jouw verhaal.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="cta-card">
+          <div>
+            <span class="section-label">Klaar voor vertrek?</span>
+            <h2>Jouw verhaal begint vandaag.</h2>
+            <p>Join GoudHaven en ontdek wat de stad voor jou in petto heeft.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="button button-primary js-fivem-link" href="#" target="_blank" rel="noopener">Join GoudHaven</a>
+            <a class="button button-secondary js-discord-link" href="#" target="_blank" rel="noopener">Open Discord</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rules-strip">
+      <div class="container rules-strip-inner">
+        <div>
+          <strong>Respect</strong>
+          <span>voor elkaar en de roleplay</span>
+        </div>
+        <div>
+          <strong>Verhaal</strong>
+          <span>boven winnen</span>
+        </div>
+        <div>
+          <strong>Plezier</strong>
+          <span>voor de hele community</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <span class="brand-mark">GH</span>
+          <span><strong>GoudHaven</strong><small>ROLEPLAY</small></span>
+        </div>
+        <p>Een Nederlandse FiveM-roleplaycommunity waar jouw verhaal begint.</p>
+      </div>
+
+      <div>
+        <h3>Direct naar</h3>
+        <a class="js-fivem-link" href="#" target="_blank" rel="noopener">Join de stad</a>
+        <a class="js-discord-link" href="#" target="_blank" rel="noopener">Discord</a>
+        <a href="#over">Over GoudHaven</a>
+      </div>
+
+      <div>
+        <h3>Informatie</h3>
+        <a href="mailto:info@goud-haven.nl">Contact</a>
+        <a href="#" id="privacy-link">Privacy</a>
+        <a href="#" id="rules-link">Regels via Discord</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© <span id="current-year"></span> GoudHaven Roleplay. Alle rechten voorbehouden.</span>
+      <span>Niet gelieerd aan Rockstar Games of Take-Two Interactive.</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
