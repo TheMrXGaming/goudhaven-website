@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#07090c">
   <title>GoudHaven CMS</title>
-  <link rel="stylesheet" href="admin-v3.css?v=3.0">
+  <link rel="stylesheet" href="admin-v5.css?v=5.0">
 </head>
 <body>
 <div id="loginScreen" class="login-screen">
@@ -60,7 +60,13 @@
         <article><span>✓</span><div><small>Gepubliceerd</small><strong id="statPublished">0</strong></div></article>
         <article><span>◷</span><div><small>Laatste wijziging</small><strong id="statUpdated">—</strong></div></article>
       </div>
-      <div class="dashboard-grid">
+      <div class="quick-actions">
+      <button id="quickNewArticle2"><span>＋</span><div><b>Nieuw artikel</b><small>Direct toevoegen</small></div></button>
+      <button data-view-jump="articles"><span>⌕</span><div><b>Artikelen zoeken</b><small>Zoeken en filteren</small></div></button>
+      <button data-view-jump="chapters"><span>▣</span><div><b>Hoofdstukken</b><small>Indeling beheren</small></div></button>
+      <button id="printWetboekButton"><span>⎙</span><div><b>Wetboek printen</b><small>PDF via afdrukken</small></div></button>
+    </div>
+    <div class="dashboard-grid">
         <section class="panel"><div class="panel-head"><h3>Recent gewijzigd</h3><button data-view-jump="changes">Alles bekijken</button></div><div id="recentChanges"></div></section>
         <section class="panel"><div class="panel-head"><h3>Verdeling per hoofdstuk</h3></div><div id="chapterBreakdown"></div></section>
       </div>
@@ -114,25 +120,81 @@
   </main>
 </div>
 
-<dialog id="articleDialog">
+<dialog id="articleDialog" class="article-editor-dialog">
 <form id="articleForm">
-  <div class="dialog-head"><div><span class="kicker">Wetboek</span><h2 id="articleDialogTitle">Nieuw artikel</h2></div><button type="button" data-close="articleDialog">×</button></div>
-  <input id="articleId" type="hidden">
-  <div class="form-grid">
-    <label>Hoofdstuk<select id="articleChapter" required></select></label>
-    <label>Artikelnummer<input id="articleNumber" required placeholder="Bijvoorbeeld 8.6"></label>
-    <label class="wide">Titel<input id="articleTitle" required></label>
-    <label class="wide">Omschrijving<textarea id="articleDescription" rows="6"></textarea></label>
-    <label>Celstraf<input id="articleJail" placeholder="Bijvoorbeeld 15 maanden"></label>
-    <label>Boete<input id="articleFine" placeholder="Bijvoorbeeld € 30.000"></label>
-    <label>Punten / maatregel<input id="articlePoints"></label>
-    <label>Inbeslagname<input id="articleSeize"></label>
-    <label>Ernst<select id="articleSeverity"><option>normaal</option><option>middel</option><option>ernstig</option><option>zeer ernstig</option></select></label>
-    <label>Volgorde<input id="articleOrder" type="number" value="0"></label>
-    <label class="wide">Trefwoorden<input id="articleTags" placeholder="cocaïne, coke, harddrugs"></label>
-    <label class="check wide"><input id="articlePublished" type="checkbox" checked> Direct publiceren</label>
+  <div class="dialog-head">
+    <div><span class="kicker">Professionele editor</span><h2 id="articleDialogTitle">Nieuw artikel</h2></div>
+    <div class="editor-head-actions">
+      <span id="autosaveStatus" class="autosave-status">Niet opgeslagen</span>
+      <button type="button" data-close="articleDialog">×</button>
+    </div>
   </div>
-  <div class="dialog-actions"><button type="button" class="button ghost" data-close="articleDialog">Annuleren</button><button class="button danger" type="button" id="deleteArticleButton" hidden>Verwijderen</button><button class="button primary" type="submit">Opslaan</button></div>
+
+  <div class="editor-tabs">
+    <button type="button" class="editor-tab active" data-editor-tab="edit">Bewerken</button>
+    <button type="button" class="editor-tab" data-editor-tab="preview">Live voorbeeld</button>
+    <button type="button" class="editor-tab" data-editor-tab="history">Geschiedenis</button>
+  </div>
+
+  <input id="articleId" type="hidden">
+
+  <section id="editor-edit" class="editor-panel active">
+    <div class="form-grid">
+      <label>Hoofdstuk<select id="articleChapter" required></select></label>
+      <label>Artikelnummer<input id="articleNumber" required placeholder="Bijvoorbeeld 8.6"></label>
+      <label class="wide">Titel<input id="articleTitle" required></label>
+      <label class="wide">Omschrijving<textarea id="articleDescription" rows="8" placeholder="Omschrijf duidelijk wat strafbaar is..."></textarea></label>
+
+      <div class="field-group wide">
+        <h3>Straf en maatregelen</h3>
+        <div class="form-grid nested">
+          <label>Celstraf<input id="articleJail" placeholder="Bijvoorbeeld 15 maanden"></label>
+          <label>Boete<input id="articleFine" placeholder="Bijvoorbeeld € 30.000"></label>
+          <label>Punten / maatregel<input id="articlePoints"></label>
+          <label>Inbeslagname<input id="articleSeize"></label>
+        </div>
+      </div>
+
+      <label>Ernst<select id="articleSeverity">
+        <option value="normaal">Normaal</option>
+        <option value="middel">Middel</option>
+        <option value="ernstig">Ernstig</option>
+        <option value="zeer ernstig">Zeer ernstig</option>
+      </select></label>
+      <label>Volgorde<input id="articleOrder" type="number" value="0"></label>
+      <label class="wide">Trefwoorden<input id="articleTags" placeholder="cocaïne, coke, harddrugs"></label>
+      <label class="check wide"><input id="articlePublished" type="checkbox" checked> Direct publiceren</label>
+    </div>
+  </section>
+
+  <section id="editor-preview" class="editor-panel">
+    <div class="live-preview-shell">
+      <div class="preview-badge" id="previewChapter">Hoofdstuk</div>
+      <div class="preview-number" id="previewNumber">Artikel —</div>
+      <h2 id="previewTitle">Titel van het artikel</h2>
+      <p id="previewDescription">De omschrijving verschijnt hier terwijl je typt.</p>
+      <div class="preview-penalties">
+        <article><small>Celstraf</small><strong id="previewJail">—</strong></article>
+        <article><small>Boete</small><strong id="previewFine">—</strong></article>
+        <article><small>Maatregel</small><strong id="previewPoints">—</strong></article>
+        <article><small>Inbeslagname</small><strong id="previewSeize">—</strong></article>
+      </div>
+      <div id="previewTags" class="preview-tags"></div>
+    </div>
+  </section>
+
+  <section id="editor-history" class="editor-panel">
+    <div id="articleHistoryList" class="history-list">
+      <p class="empty-state">Sla het artikel eerst op om geschiedenis te bekijken.</p>
+    </div>
+  </section>
+
+  <div class="dialog-actions">
+    <button type="button" class="button ghost" data-close="articleDialog">Annuleren</button>
+    <button class="button ghost" type="button" id="printArticleButton">Print voorbeeld</button>
+    <button class="button danger" type="button" id="deleteArticleButton" hidden>Verwijderen</button>
+    <button class="button primary" type="submit">Opslaan</button>
+  </div>
 </form>
 </dialog>
 
@@ -155,6 +217,6 @@
 <div id="toast" class="toast"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../supabase-config.js"></script>
-<script src="admin-v3.js?v=3.0"></script>
+<script src="admin-v5.js?v=5.0"></script>
 </body>
 </html>
