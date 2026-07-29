@@ -1,385 +1,145 @@
-const state = {
-  data: null,
-  query: "",
-  activeChapter: "all",
-  allExpanded: false
-};
-
+const state = { data:null, query:"", chapter:"all", expanded:false };
+const $ = id => document.getElementById(id);
 const els = {
-  searchInput: document.getElementById("searchInput"),
-  lawContainer: document.getElementById("lawContainer"),
-  chapterNav: document.getElementById("chapterNav"),
-  articleCount: document.getElementById("articleCount"),
-  chapterCount: document.getElementById("chapterCount"),
-  updatedDate: document.getElementById("updatedDate"),
-  resultLabel: document.getElementById("resultLabel"),
-  resultCount: document.getElementById("resultCount"),
-  clearSearchButton: document.getElementById("clearSearchButton"),
-  emptyClearButton: document.getElementById("emptyClearButton"),
-  emptyState: document.getElementById("emptyState"),
-  expandAllButton: document.getElementById("expandAllButton"),
-  menuButton: document.getElementById("menuButton"),
-  closeMenuButton: document.getElementById("closeMenuButton"),
-  sidebar: document.getElementById("sidebar"),
-  mobileOverlay: document.getElementById("mobileOverlay"),
-  themeButton: document.getElementById("themeButton"),
-  toast: document.getElementById("toast"),
-  noticeContainer: document.getElementById("noticeContainer")
+  chapterNav:$("chapterNav"), lawContainer:$("lawContainer"), searchInput:$("searchInput"),
+  clearSearchButton:$("clearSearchButton"), articleCount:$("articleCount"), chapterCount:$("chapterCount"),
+  updatedDate:$("updatedDate"), resultTitle:$("resultTitle"), resultCount:$("resultCount"),
+  popularArticles:$("popularArticles"), recentArticles:$("recentArticles"), emptyState:$("emptyState"),
+  expandAllButton:$("expandAllButton"), quickArticleInput:$("quickArticleInput"),
+  quickArticleButton:$("quickArticleButton"), menuButton:$("menuButton"), sidebar:$("sidebar"),
+  overlay:$("overlay"), themeButton:$("themeButton"), toast:$("toast")
 };
-
-function normalize(value = "") {
-  return String(value)
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+const normalize = s => String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+const slugify = s => normalize(s).replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
+const escapeHtml = s => String(s??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
+function highlight(text,q){
+  const safe=escapeHtml(text);
+  const terms=q.trim().split(/\s+/).filter(Boolean).map(x=>x.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"));
+  return terms.length?safe.replace(new RegExp(`(${terms.join("|")})`,"gi"),"<mark>$1</mark>"):safe;
 }
-
-function slugify(value = "") {
-  return normalize(value)
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+function articleSearchText(a,c){
+  return normalize([a.number,a.title,a.description,a.notes,a.penalty?.jail,a.penalty?.fine,a.penalty?.points,...(a.tags||[]),c.title,c.description].join(" "));
 }
-
-function escapeHtml(value = "") {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function highlight(value, query) {
-  const safe = escapeHtml(value);
-  if (!query.trim()) return safe;
-
-  const terms = query
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean)
-    .sort((a, b) => b.length - a.length)
-    .map(term => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-
-  if (!terms.length) return safe;
-  return safe.replace(new RegExp(`(${terms.join("|")})`, "gi"), "<mark>$1</mark>");
-}
-
-function getSearchText(article, chapter) {
-  return normalize([
-    article.number,
-    article.title,
-    article.description,
-    article.notes,
-    article.category,
-    article.penalty?.jail,
-    article.penalty?.fine,
-    article.penalty?.points,
-    ...(article.tags || []),
-    chapter.title,
-    chapter.description
-  ].filter(Boolean).join(" "));
-}
-
-function getVisibleChapters() {
-  const query = normalize(state.query.trim());
-
+function visibleChapters(){
+  const q=normalize(state.query.trim());
   return state.data.chapters
-    .filter(chapter => state.activeChapter === "all" || chapter.id === state.activeChapter)
-    .map(chapter => ({
-      ...chapter,
-      articles: chapter.articles.filter(article => !query || getSearchText(article, chapter).includes(query))
-    }))
-    .filter(chapter => chapter.articles.length > 0);
+    .filter(c=>state.chapter==="all"||c.id===state.chapter)
+    .map(c=>({...c,articles:c.articles.filter(a=>!q||articleSearchText(a,c).includes(q))}))
+    .filter(c=>c.articles.length);
 }
-
-function formatPenalty(value, fallback = "Niet van toepassing") {
-  return value && String(value).trim() ? value : fallback;
+function categoryClass(id){
+  if(id.includes("drug")) return "drugs";
+  if(id.includes("verkeer")) return "verkeer";
+  if(id.includes("geweld")||id.includes("wapen")) return "geweld";
+  if(id.includes("overheid")) return "overheid";
+  return "vermogen";
 }
-
-function renderNavigation() {
-  const articleTotal = state.data.chapters.reduce((sum, chapter) => sum + chapter.articles.length, 0);
-
-  els.chapterNav.innerHTML = `
-    <button class="chapter-link ${state.activeChapter === "all" ? "active" : ""}" data-chapter="all">
-      <span class="chapter-number">∞</span>
-      <span>Alle artikelen</span>
+function renderNav(){
+  els.chapterNav.innerHTML=state.data.chapters.map((c,i)=>`
+    <button class="chapter-button ${state.chapter===c.id?"active":""}" data-chapter="${escapeHtml(c.id)}">
+      <span class="chapter-icon">${c.icon||"▤"}</span><b>${escapeHtml(c.title)}</b><span class="chapter-count">${c.articles.length}</span>
+    </button>`).join("");
+  els.chapterNav.querySelectorAll("[data-chapter]").forEach(btn=>btn.onclick=()=>{
+    state.chapter=state.chapter===btn.dataset.chapter?"all":btn.dataset.chapter;
+    renderNav();renderArticles();document.querySelector("#wetboek").scrollIntoView({behavior:"smooth"});
+    closeMenu();
+  });
+}
+function renderDashboard(){
+  const all=state.data.chapters.flatMap(c=>c.articles.map(a=>({...a,chapter:c})));
+  const popular=all.filter(a=>a.popular).slice(0,5);
+  const recent=[...all].filter(a=>a.updated).sort((a,b)=>b.updated.localeCompare(a.updated)).slice(0,5);
+  els.popularArticles.innerHTML=popular.map(a=>listRow(a,false)).join("");
+  els.recentArticles.innerHTML=recent.map(a=>listRow(a,true)).join("");
+  document.querySelectorAll("[data-open-article]").forEach(el=>el.onclick=()=>goToArticle(el.dataset.openArticle));
+}
+function listRow(a,showDate){
+  return `<div class="list-row" data-open-article="${slugify(a.number)}">
+    <span class="title">Artikel ${escapeHtml(a.number)} - ${escapeHtml(a.title)}</span>
+    <span class="tag ${categoryClass(a.chapter.id)}">${escapeHtml(a.chapter.shortTitle||a.chapter.title)}</span>
+    ${showDate?`<span class="date">${escapeHtml(a.updated)}</span>`:"<span>›</span>"}
+  </div>`;
+}
+function renderArticles(){
+  const chapters=visibleChapters();
+  const total=chapters.reduce((n,c)=>n+c.articles.length,0);
+  els.resultTitle.textContent=state.query?`Zoeken naar “${state.query}”`:state.chapter==="all"?"Alle artikelen":state.data.chapters.find(c=>c.id===state.chapter)?.title;
+  els.resultCount.textContent=`${total} ${total===1?"artikel":"artikelen"} gevonden`;
+  els.clearSearchButton.hidden=!state.query;
+  els.emptyState.hidden=total!==0;
+  els.lawContainer.innerHTML=chapters.map((c,ci)=>`
+    <section class="chapter-section" id="chapter-${escapeHtml(c.id)}">
+      <div class="chapter-title"><span>${String(ci+1).padStart(2,"0")}</span><div><h3>${highlight(c.title,state.query)}</h3><p>${highlight(c.description||"",state.query)}</p></div></div>
+      ${c.articles.map(a=>articleCard(a,c)).join("")}
+    </section>`).join("");
+  bindArticles();
+  if(location.hash) setTimeout(openFromHash,50);
+}
+function articleCard(a,c){
+  const id=`artikel-${slugify(a.number)}`;
+  return `<article class="article-card ${state.expanded||state.query?"open":""}" id="${id}">
+    <button class="article-head">
+      <span class="article-number">Art. ${highlight(a.number,state.query)}</span>
+      <span class="article-main"><b>${highlight(a.title,state.query)}</b><small>${highlight((a.tags||[]).join(" · "),state.query)}</small></span>
+      <span class="quick-penalty">
+        ${a.penalty?.jail?`<span class="badge">Cel: ${escapeHtml(a.penalty.jail)}</span>`:""}
+        ${a.penalty?.fine?`<span class="badge">Boete: ${escapeHtml(a.penalty.fine)}</span>`:""}
+      </span>
+      <span class="chev">⌄</span>
     </button>
-    ${state.data.chapters.map((chapter, index) => `
-      <button class="chapter-link ${state.activeChapter === chapter.id ? "active" : ""}" data-chapter="${escapeHtml(chapter.id)}">
-        <span class="chapter-number">${String(index + 1).padStart(2, "0")}</span>
-        <span>${escapeHtml(chapter.title)}</span>
-      </button>
-    `).join("")}
-  `;
-
-  els.articleCount.textContent = articleTotal;
-  els.chapterCount.textContent = state.data.chapters.length;
-  els.updatedDate.textContent = state.data.meta.lastUpdated || "Onbekend";
-
-  els.chapterNav.querySelectorAll("[data-chapter]").forEach(button => {
-    button.addEventListener("click", () => {
-      state.activeChapter = button.dataset.chapter;
-      renderNavigation();
-      renderArticles();
-      closeMobileMenu();
-      window.scrollTo({ top: document.querySelector(".layout").offsetTop - 12, behavior: "smooth" });
-    });
-  });
-}
-
-function renderNotice() {
-  if (!state.data.meta.notice) {
-    els.noticeContainer.innerHTML = "";
-    return;
-  }
-
-  els.noticeContainer.innerHTML = `
-    <div class="notice">
-      <span aria-hidden="true">⚠</span>
-      <div>
-        <strong>${escapeHtml(state.data.meta.notice.title || "Mededeling")}</strong>
-        <p>${escapeHtml(state.data.meta.notice.text || "")}</p>
+    <div class="article-body"><div class="article-inner">
+      <p>${highlight(a.description||"",state.query)}</p>
+      <div class="penalty-grid">
+        <div class="penalty"><small>Celstraf</small><strong>${escapeHtml(a.penalty?.jail||"Niet van toepassing")}</strong></div>
+        <div class="penalty"><small>Boete</small><strong>${escapeHtml(a.penalty?.fine||"Niet van toepassing")}</strong></div>
+        <div class="penalty"><small>Punten / maatregel</small><strong>${escapeHtml(a.penalty?.points||"Niet van toepassing")}</strong></div>
       </div>
-    </div>
-  `;
+      ${a.notes?`<div class="notes"><strong>Toelichting:</strong> ${highlight(a.notes,state.query)}</div>`:""}
+      <div class="tag-row">${(a.tags||[]).map(t=>`<span class="article-tag">${highlight(t,state.query)}</span>`).join("")}</div>
+      <div class="article-actions"><button data-copy="${id}">Link kopiëren</button><button data-favorite="${id}">☆ Favoriet</button></div>
+    </div></div>
+  </article>`;
 }
-
-function renderArticles() {
-  const chapters = getVisibleChapters();
-  const totalResults = chapters.reduce((sum, chapter) => sum + chapter.articles.length, 0);
-  const hasQuery = Boolean(state.query.trim());
-
-  els.resultLabel.textContent = hasQuery
-    ? `Zoeken naar “${state.query.trim()}”`
-    : state.activeChapter === "all"
-      ? "Alle artikelen"
-      : state.data.chapters.find(chapter => chapter.id === state.activeChapter)?.title || "Artikelen";
-
-  els.resultCount.textContent = `${totalResults} ${totalResults === 1 ? "resultaat" : "resultaten"}`;
-  els.clearSearchButton.hidden = !hasQuery;
-  els.emptyState.hidden = totalResults !== 0;
-
-  els.lawContainer.innerHTML = chapters.map((chapter, chapterIndex) => `
-    <section class="chapter-section" id="chapter-${escapeHtml(chapter.id)}">
-      <header class="chapter-heading">
-        <span class="chapter-heading-number">${String(chapterIndex + 1).padStart(2, "0")}</span>
-        <div>
-          <h2>${highlight(chapter.title, state.query)}</h2>
-          <p>${highlight(chapter.description || "", state.query)}</p>
-        </div>
-      </header>
-
-      ${chapter.articles.map(article => {
-        const articleId = `artikel-${slugify(article.number)}`;
-        const tags = article.tags || [];
-        const openClass = state.allExpanded || hasQuery ? " open" : "";
-
-        return `
-          <article class="article-card${openClass}" id="${articleId}">
-            <button class="article-summary" type="button" aria-expanded="${state.allExpanded || hasQuery}">
-              <span class="article-number">Art. ${highlight(article.number, state.query)}</span>
-
-              <span class="article-title-wrap">
-                <span class="article-title">${highlight(article.title, state.query)}</span>
-                <span class="article-tags-preview">${highlight(tags.join(" · "), state.query)}</span>
-              </span>
-
-              <span class="article-quick-penalty">
-                ${article.penalty?.jail ? `<span class="mini-badge">Cel: ${escapeHtml(article.penalty.jail)}</span>` : ""}
-                ${article.penalty?.fine ? `<span class="mini-badge">Boete: ${escapeHtml(article.penalty.fine)}</span>` : ""}
-              </span>
-
-              <span class="chevron" aria-hidden="true">⌄</span>
-            </button>
-
-            <div class="article-details">
-              <div class="article-body">
-                <p>${highlight(article.description || "", state.query)}</p>
-
-                <div class="penalties">
-                  <div class="penalty-card">
-                    <span>Celstraf</span>
-                    <strong>${escapeHtml(formatPenalty(article.penalty?.jail))}</strong>
-                  </div>
-                  <div class="penalty-card">
-                    <span>Boete</span>
-                    <strong>${escapeHtml(formatPenalty(article.penalty?.fine))}</strong>
-                  </div>
-                  <div class="penalty-card">
-                    <span>Rijbewijs- / strafpunten</span>
-                    <strong>${escapeHtml(formatPenalty(article.penalty?.points))}</strong>
-                  </div>
-                </div>
-
-                ${article.notes ? `<div class="article-extra"><strong>Toelichting:</strong> ${highlight(article.notes, state.query)}</div>` : ""}
-
-                <div class="tags">
-                  ${tags.map(tag => `<span class="tag">${highlight(tag, state.query)}</span>`).join("")}
-                </div>
-
-                <div class="article-actions">
-                  <button type="button" data-copy="${articleId}">Link kopiëren</button>
-                  <button type="button" data-print="${articleId}">Artikel afdrukken</button>
-                </div>
-              </div>
-            </div>
-          </article>
-        `;
-      }).join("")}
-    </section>
-  `).join("");
-
-  bindArticleInteractions();
-
-  if (location.hash) {
-    requestAnimationFrame(() => openArticleFromHash());
-  }
-}
-
-function bindArticleInteractions() {
-  document.querySelectorAll(".article-summary").forEach(button => {
-    button.addEventListener("click", () => {
-      const card = button.closest(".article-card");
-      card.classList.toggle("open");
-      button.setAttribute("aria-expanded", card.classList.contains("open"));
-      history.replaceState(null, "", `#${card.id}`);
-    });
+function bindArticles(){
+  document.querySelectorAll(".article-head").forEach(btn=>btn.onclick=()=>{
+    const card=btn.closest(".article-card"); card.classList.toggle("open"); history.replaceState(null,"",`#${card.id}`);
   });
-
-  document.querySelectorAll("[data-copy]").forEach(button => {
-    button.addEventListener("click", async event => {
-      event.stopPropagation();
-      const url = new URL(location.href);
-      url.hash = button.dataset.copy;
-
-      try {
-        await navigator.clipboard.writeText(url.toString());
-        showToast("De link naar dit artikel is gekopieerd.");
-      } catch {
-        prompt("Kopieer deze link:", url.toString());
-      }
-    });
+  document.querySelectorAll("[data-copy]").forEach(btn=>btn.onclick=async e=>{
+    e.stopPropagation(); const url=new URL(location.href); url.hash=btn.dataset.copy;
+    try{await navigator.clipboard.writeText(url);toast("Link gekopieerd.");}catch{prompt("Kopieer deze link:",url);}
   });
-
-  document.querySelectorAll("[data-print]").forEach(button => {
-    button.addEventListener("click", event => {
-      event.stopPropagation();
-      const article = document.getElementById(button.dataset.print);
-      article.classList.add("open");
-      window.print();
-    });
+  document.querySelectorAll("[data-favorite]").forEach(btn=>btn.onclick=e=>{
+    e.stopPropagation(); const favs=JSON.parse(localStorage.getItem("gh-favorites")||"[]"); const id=btn.dataset.favorite;
+    const next=favs.includes(id)?favs.filter(x=>x!==id):[...favs,id]; localStorage.setItem("gh-favorites",JSON.stringify(next));
+    btn.textContent=next.includes(id)?"★ Favoriet":"☆ Favoriet"; toast(next.includes(id)?"Toegevoegd aan favorieten.":"Verwijderd uit favorieten.");
   });
 }
-
-function clearSearch() {
-  state.query = "";
-  els.searchInput.value = "";
-  renderArticles();
-  els.searchInput.focus();
+function goToArticle(number){
+  const id=`artikel-${slugify(number)}`; state.chapter="all"; state.query=""; els.searchInput.value=""; renderNav();renderArticles();
+  setTimeout(()=>{location.hash=id;openFromHash();},60);
 }
-
-function openArticleFromHash() {
-  const id = location.hash.slice(1);
-  if (!id) return;
-
-  const article = document.getElementById(id);
-  if (!article) return;
-
-  article.classList.add("open", "highlight");
-  article.querySelector(".article-summary")?.setAttribute("aria-expanded", "true");
-  article.scrollIntoView({ behavior: "smooth", block: "center" });
-  setTimeout(() => article.classList.remove("highlight"), 1500);
+function openFromHash(){
+  const el=document.getElementById(location.hash.slice(1)); if(!el)return; el.classList.add("open"); el.scrollIntoView({behavior:"smooth",block:"center"});
 }
-
-function openMobileMenu() {
-  els.sidebar.classList.add("open");
-  els.mobileOverlay.classList.add("show");
-  els.menuButton.setAttribute("aria-expanded", "true");
+function clearSearch(){state.query="";els.searchInput.value="";renderArticles();els.searchInput.focus();}
+function toast(msg){els.toast.textContent=msg;els.toast.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>els.toast.classList.remove("show"),1800);}
+function openMenu(){els.sidebar.classList.add("open");els.overlay.classList.add("show");}
+function closeMenu(){els.sidebar.classList.remove("open");els.overlay.classList.remove("show");}
+async function init(){
+  const res=await fetch("data/wetboek.json",{cache:"no-store"}); state.data=await res.json();
+  const total=state.data.chapters.reduce((n,c)=>n+c.articles.length,0);
+  els.articleCount.textContent=total; els.chapterCount.textContent=state.data.chapters.length; els.updatedDate.textContent=state.data.meta.lastUpdated;
+  renderNav();renderDashboard();renderArticles();
+  els.searchInput.oninput=e=>{state.query=e.target.value;state.chapter="all";renderNav();renderArticles();};
+  els.clearSearchButton.onclick=clearSearch;
+  els.expandAllButton.onclick=()=>{state.expanded=!state.expanded;els.expandAllButton.textContent=state.expanded?"Alles sluiten":"Alles openen";renderArticles();};
+  const quick=()=>{if(els.quickArticleInput.value.trim())goToArticle(els.quickArticleInput.value.trim());};
+  els.quickArticleButton.onclick=quick; els.quickArticleInput.onkeydown=e=>{if(e.key==="Enter")quick();};
+  els.menuButton.onclick=openMenu; els.overlay.onclick=closeMenu;
+  els.themeButton.onclick=()=>{const now=document.documentElement.dataset.theme||"dark";const next=now==="dark"?"light":"dark";document.documentElement.dataset.theme=next;localStorage.setItem("gh-theme",next);};
+  document.documentElement.dataset.theme=localStorage.getItem("gh-theme")||"dark";
+  document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();els.searchInput.focus();}if(e.key==="Escape")closeMenu();});
+  $("year").textContent=new Date().getFullYear();
+  openFromHash();
 }
-
-function closeMobileMenu() {
-  els.sidebar.classList.remove("open");
-  els.mobileOverlay.classList.remove("show");
-  els.menuButton.setAttribute("aria-expanded", "false");
-}
-
-function showToast(message) {
-  els.toast.textContent = message;
-  els.toast.classList.add("show");
-  clearTimeout(showToast.timeout);
-  showToast.timeout = setTimeout(() => els.toast.classList.remove("show"), 2200);
-}
-
-function applyTheme(theme) {
-  document.documentElement.dataset.theme = theme;
-  localStorage.setItem("goudhaven-wetboek-theme", theme);
-  els.themeButton.title = theme === "dark" ? "Lichte modus" : "Donkere modus";
-}
-
-function bindGlobalEvents() {
-  els.searchInput.addEventListener("input", event => {
-    state.query = event.target.value;
-    renderArticles();
-  });
-
-  els.clearSearchButton.addEventListener("click", clearSearch);
-  els.emptyClearButton.addEventListener("click", clearSearch);
-
-  els.expandAllButton.addEventListener("click", () => {
-    state.allExpanded = !state.allExpanded;
-    els.expandAllButton.textContent = state.allExpanded ? "Alles sluiten" : "Alles openen";
-    renderArticles();
-  });
-
-  els.menuButton.addEventListener("click", openMobileMenu);
-  els.closeMenuButton.addEventListener("click", closeMobileMenu);
-  els.mobileOverlay.addEventListener("click", closeMobileMenu);
-
-  els.themeButton.addEventListener("click", () => {
-    const current = document.documentElement.dataset.theme || "dark";
-    applyTheme(current === "dark" ? "light" : "dark");
-  });
-
-  document.addEventListener("keydown", event => {
-    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
-      event.preventDefault();
-      els.searchInput.focus();
-      els.searchInput.select();
-    }
-
-    if (event.key === "Escape") {
-      closeMobileMenu();
-      if (document.activeElement === els.searchInput && els.searchInput.value) clearSearch();
-    }
-  });
-
-  window.addEventListener("hashchange", openArticleFromHash);
-}
-
-async function init() {
-  try {
-    const response = await fetch("data/wetboek.json", { cache: "no-store" });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    state.data = await response.json();
-
-    renderNavigation();
-    renderNotice();
-    renderArticles();
-    bindGlobalEvents();
-
-    const savedTheme = localStorage.getItem("goudhaven-wetboek-theme");
-    applyTheme(savedTheme || "dark");
-    document.getElementById("currentYear").textContent = new Date().getFullYear();
-  } catch (error) {
-    console.error(error);
-    els.lawContainer.innerHTML = `
-      <div class="empty-state">
-        <div>⚠</div>
-        <h2>Het wetboek kon niet worden geladen</h2>
-        <p>Controleer of <strong>wetboek/data/wetboek.json</strong> bestaat en geldige JSON bevat.</p>
-      </div>
-    `;
-  }
-}
-
-init();
+init().catch(err=>{console.error(err);els.lawContainer.innerHTML='<div class="empty-state"><h3>Wetboek kon niet worden geladen</h3><p>Controleer data/wetboek.json.</p></div>';});

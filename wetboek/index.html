@@ -3,122 +3,146 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Het officiële digitale wetboek van GoudHaven Roleplay. Zoek snel op artikelen, trefwoorden, boetes en celstraffen.">
-  <meta name="theme-color" content="#101114">
-  <title>Wetboek | GoudHaven Roleplay</title>
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Het officiële digitale wetboek van GoudHaven Roleplay.">
+  <meta name="theme-color" content="#090b0e">
+  <title>Wetboek GoudHaven</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="page-shell">
-    <header class="topbar">
-      <a class="brand" href="../" aria-label="Terug naar GoudHaven">
-        <img src="../goudhaven-logo.png" alt="Logo GoudHaven">
-        <span>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-mark">GH</div>
+        <div>
           <strong>GoudHaven</strong>
-          <small>Officieel wetboek</small>
-        </span>
-      </a>
-
-      <div class="topbar-actions">
-        <button class="icon-button mobile-menu-button" id="menuButton" aria-label="Menu openen" aria-expanded="false">
-          ☰
-        </button>
-        <button class="icon-button" id="themeButton" aria-label="Thema wijzigen" title="Thema wijzigen">
-          ◐
-        </button>
-        <a class="back-button" href="../">Terug naar website</a>
+          <span>Wetboek</span>
+        </div>
       </div>
-    </header>
 
-    <section class="hero">
-      <div class="hero-copy">
-        <span class="eyebrow">GoudHaven Roleplay</span>
-        <h1>Wetboek &amp; strafregister</h1>
-        <p>
-          Zoek snel op artikelnummer, strafbaar feit, trefwoord, boete of celstraf.
-          De zoekresultaten worden direct bijgewerkt terwijl je typt.
-        </p>
+      <button class="nav-item active" data-view="overview">
+        <span>⌂</span><b>Overzicht</b>
+      </button>
 
-        <div class="search-wrap">
-          <span class="search-icon" aria-hidden="true">⌕</span>
-          <input
-            id="searchInput"
-            type="search"
-            placeholder="Zoek bijvoorbeeld: gijzeling, wapen, artikel 3.7..."
-            autocomplete="off"
-            aria-label="Doorzoek het wetboek"
-          >
+      <div class="sidebar-label">Hoofdstukken</div>
+      <nav id="chapterNav"></nav>
+
+      <div class="quick-card">
+        <span class="quick-title">Snel naar artikel</span>
+        <p>Voer een artikelnummer in, bijvoorbeeld 3.7 of 9.4.</p>
+        <div class="quick-input">
+          <input id="quickArticleInput" placeholder="Bijv. 9.4">
+          <button id="quickArticleButton" aria-label="Ga naar artikel">→</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuButton">☰</button>
+        <nav>
+          <a href="#wetboek" class="active">⚖ Wetboek</a>
+          <a href="#favorieten" id="favoritesLink">☆ Favorieten</a>
+          <a href="#wijzigingen">◷ Wijzigingen</a>
+          <a href="#over">ⓘ Over</a>
+        </nav>
+        <button id="themeButton" class="theme-toggle">◐</button>
+      </header>
+
+      <section class="hero">
+        <div class="hero-logo-wrap">
+          <img src="assets/goudhaven-logo.png" alt="GoudHaven logo" class="hero-logo">
+        </div>
+        <div class="hero-copy">
+          <span class="eyebrow">Officieel digitaal wetboek</span>
+          <h1>WETBOEK<br><span>GOUDHAVEN</span></h1>
+          <p>Zoek snel op artikelen, trefwoorden, boetes en celstraffen.</p>
+        </div>
+        <div class="hero-city" aria-hidden="true">
+          <div class="city-line"></div>
+          <div class="city-glow"></div>
+        </div>
+      </section>
+
+      <section class="search-row">
+        <div class="search-box">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="Zoek op artikelnummer, titel of trefwoord...">
           <kbd>Ctrl K</kbd>
         </div>
+        <button id="clearSearchButton" class="advanced-button" hidden>Zoeken wissen</button>
+      </section>
 
-        <div class="hero-stats">
-          <div><strong id="articleCount">0</strong><span>artikelen</span></div>
-          <div><strong id="chapterCount">0</strong><span>hoofdstukken</span></div>
-          <div><strong id="updatedDate">—</strong><span>laatst bijgewerkt</span></div>
-        </div>
-      </div>
+      <section class="stats-grid">
+        <article class="stat-card">
+          <span class="stat-icon">▤</span>
+          <div><small>Totaal artikelen</small><strong id="articleCount">0</strong></div>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon">♜</span>
+          <div><small>Hoofdstukken</small><strong id="chapterCount">0</strong></div>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon">▣</span>
+          <div><small>Laatst gewijzigd</small><strong id="updatedDate">—</strong></div>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon">⬟</span>
+          <div><small>Wetboekstatus</small><strong>Actueel</strong></div>
+        </article>
+      </section>
 
-      <div class="hero-emblem" aria-hidden="true">
-        <div class="emblem-ring">
-          <span>GH</span>
-          <small>WETBOEK</small>
-        </div>
-      </div>
-    </section>
+      <section class="dashboard-grid" id="overviewSection">
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>🔥 Meest gezocht</h2>
+          </div>
+          <div id="popularArticles" class="list"></div>
+        </article>
 
-    <main class="layout">
-      <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-          <span>Inhoudsopgave</span>
-          <button id="closeMenuButton" aria-label="Menu sluiten">×</button>
-        </div>
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>◷ Recent gewijzigd</h2>
+          </div>
+          <div id="recentArticles" class="list"></div>
+        </article>
+      </section>
 
-        <nav id="chapterNav" aria-label="Hoofdstukken"></nav>
-
-        <div class="sidebar-card">
+      <section class="important-box">
+        <div class="important-icon">⬟</div>
+        <div>
           <strong>Belangrijk</strong>
-          <p>
-            Dit wetboek is bedoeld voor roleplay binnen GoudHaven. De meest recente
-            versie op deze pagina is leidend.
-          </p>
+          <p>Onwetendheid ontslaat niet van straf. De maximale reguliere celstraf bedraagt 60 maanden, tenzij de Hoofdofficier van Justitie toestemming geeft om hiervan af te wijken.</p>
         </div>
-      </aside>
+      </section>
 
-      <section class="content">
-        <div class="content-toolbar">
+      <section class="laws-section" id="wetboek">
+        <div class="section-heading">
           <div>
-            <span id="resultLabel">Alle artikelen</span>
-            <small id="resultCount"></small>
+            <span class="section-kicker">Wetboek</span>
+            <h2 id="resultTitle">Alle artikelen</h2>
+            <p id="resultCount"></p>
           </div>
-
-          <div class="toolbar-actions">
-            <button id="expandAllButton" type="button">Alles openen</button>
-            <button id="clearSearchButton" type="button" hidden>Zoekopdracht wissen</button>
-          </div>
+          <button id="expandAllButton">Alles openen</button>
         </div>
 
-        <div id="noticeContainer"></div>
         <div id="lawContainer"></div>
 
         <div id="emptyState" class="empty-state" hidden>
-          <div>🔎</div>
-          <h2>Geen artikelen gevonden</h2>
-          <p>Probeer een ander artikelnummer of een breder trefwoord.</p>
-          <button type="button" id="emptyClearButton">Zoekopdracht wissen</button>
+          <span>⌕</span>
+          <h3>Geen artikelen gevonden</h3>
+          <p>Probeer een ander trefwoord of artikelnummer.</p>
         </div>
       </section>
-    </main>
 
-    <footer>
-      <span>© <span id="currentYear"></span> GoudHaven Roleplay</span>
-      <span>Waar jouw verhaal begint.</span>
-    </footer>
+      <footer id="over">
+        <span>© <span id="year"></span> GoudHaven</span>
+        <span>Waar jouw verhaal begint.</span>
+      </footer>
+    </main>
   </div>
 
-  <div class="mobile-overlay" id="mobileOverlay"></div>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
+  <div class="overlay" id="overlay"></div>
+  <div class="toast" id="toast"></div>
   <script src="script.js"></script>
 </body>
 </html>
