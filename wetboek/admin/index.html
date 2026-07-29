@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07090c">
+  <title>GoudHaven CMS</title>
+  <link rel="stylesheet" href="admin-v2.css?v=2.0">
+</head>
+<body>
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <img src="../assets/goudhaven-logo.png" alt="GoudHaven">
+    <div class="kicker">Beveiligde omgeving</div>
+    <h1>GoudHaven CMS</h1>
+    <p>Beheer het wetboek zonder GitHub-bestanden te wijzigen.</p>
+    <form id="loginForm">
+      <label>E-mailadres<input id="email" type="email" autocomplete="username" required></label>
+      <label>Wachtwoord<input id="password" type="password" autocomplete="current-password" required></label>
+      <button type="submit" class="button primary">Inloggen</button>
+    </form>
+    <div id="loginMessage" class="message"></div>
+  </div>
+</div>
+
+<div id="app" class="app" hidden>
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="../assets/goudhaven-logo.png" alt="">
+      <div><strong>GoudHaven</strong><span>Wetboek CMS</span></div>
+    </div>
+    <nav>
+      <button class="nav active" data-view="dashboard">▦ <span>Dashboard</span></button>
+      <button class="nav" data-view="articles">▤ <span>Artikelen</span></button>
+      <button class="nav" data-view="chapters">▣ <span>Hoofdstukken</span></button>
+      <button class="nav" data-view="changes">↻ <span>Wijzigingen</span></button>
+      <button class="nav" data-view="admins">♛ <span>Beheerders</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <a href="../" target="_blank">↗ Wetboek bekijken</a>
+      <button id="logoutButton">⇥ Uitloggen</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button id="menuButton" class="icon-button">☰</button>
+      <div><span class="kicker">Officieel beheerpaneel</span><h1 id="pageTitle">Dashboard</h1></div>
+      <div class="user-chip"><span id="userInitial">G</span><div><b id="userEmail"></b><small>Beheerder</small></div></div>
+    </header>
+
+    <section id="view-dashboard" class="view active">
+      <div class="welcome">
+        <div><span class="kicker">Welkom terug</span><h2>Wetboek in één overzicht</h2><p>Alles wat je opslaat, wordt direct in de online database bijgewerkt.</p></div>
+        <button class="button primary" id="quickNewArticle">+ Nieuw artikel</button>
+      </div>
+      <div class="stats">
+        <article><span>▤</span><div><small>Artikelen</small><strong id="statArticles">0</strong></div></article>
+        <article><span>▣</span><div><small>Hoofdstukken</small><strong id="statChapters">0</strong></div></article>
+        <article><span>✓</span><div><small>Gepubliceerd</small><strong id="statPublished">0</strong></div></article>
+        <article><span>◷</span><div><small>Laatste wijziging</small><strong id="statUpdated">—</strong></div></article>
+      </div>
+      <div class="dashboard-grid">
+        <section class="panel"><div class="panel-head"><h3>Recent gewijzigd</h3><button data-view-jump="changes">Alles bekijken</button></div><div id="recentChanges"></div></section>
+        <section class="panel"><div class="panel-head"><h3>Verdeling per hoofdstuk</h3></div><div id="chapterBreakdown"></div></section>
+      </div>
+    </section>
+
+    <section id="view-articles" class="view">
+      <div class="section-head"><div><p>Zoek, filter en wijzig alle wetsartikelen.</p></div><button class="button primary" id="newArticleButton">+ Nieuw artikel</button></div>
+      <div class="filters">
+        <input id="articleSearch" placeholder="Zoek op nummer, titel of trefwoord...">
+        <select id="chapterFilter"><option value="">Alle hoofdstukken</option></select>
+        <select id="statusFilter"><option value="">Alle statussen</option><option value="published">Gepubliceerd</option><option value="draft">Concept</option></select>
+      </div>
+      <div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>Artikel</th><th>Titel</th><th>Hoofdstuk</th><th>Status</th><th>Gewijzigd</th><th></th></tr></thead><tbody id="articlesBody"></tbody></table></div></div>
+    </section>
+
+    <section id="view-chapters" class="view">
+      <div class="section-head"><p>Beheer de indeling en volgorde van het wetboek.</p><button class="button primary" id="newChapterButton">+ Nieuw hoofdstuk</button></div>
+      <div id="chaptersGrid" class="cards-grid"></div>
+    </section>
+
+    <section id="view-changes" class="view">
+      <div class="section-head"><p>Een overzicht van opgeslagen wijzigingen.</p></div>
+      <div class="panel"><div id="changesList"></div></div>
+    </section>
+
+    <section id="view-admins" class="view">
+      <div class="section-head"><p>Accounts met toegang tot dit beheerpaneel.</p></div>
+      <div class="panel"><div id="adminsList"></div><div class="notice">Nieuwe beheerders voeg je veilig toe via Supabase Authentication en de tabel <b>admins</b>.</div></div>
+    </section>
+  </main>
+</div>
+
+<dialog id="articleDialog">
+<form id="articleForm">
+  <div class="dialog-head"><div><span class="kicker">Wetboek</span><h2 id="articleDialogTitle">Nieuw artikel</h2></div><button type="button" data-close="articleDialog">×</button></div>
+  <input id="articleId" type="hidden">
+  <div class="form-grid">
+    <label>Hoofdstuk<select id="articleChapter" required></select></label>
+    <label>Artikelnummer<input id="articleNumber" required placeholder="Bijvoorbeeld 8.6"></label>
+    <label class="wide">Titel<input id="articleTitle" required></label>
+    <label class="wide">Omschrijving<textarea id="articleDescription" rows="6"></textarea></label>
+    <label>Celstraf<input id="articleJail" placeholder="Bijvoorbeeld 15 maanden"></label>
+    <label>Boete<input id="articleFine" placeholder="Bijvoorbeeld € 30.000"></label>
+    <label>Punten / maatregel<input id="articlePoints"></label>
+    <label>Inbeslagname<input id="articleSeize"></label>
+    <label>Ernst<select id="articleSeverity"><option>normaal</option><option>middel</option><option>ernstig</option><option>zeer ernstig</option></select></label>
+    <label>Volgorde<input id="articleOrder" type="number" value="0"></label>
+    <label class="wide">Trefwoorden<input id="articleTags" placeholder="cocaïne, coke, harddrugs"></label>
+    <label class="check wide"><input id="articlePublished" type="checkbox" checked> Direct publiceren</label>
+  </div>
+  <div class="dialog-actions"><button type="button" class="button ghost" data-close="articleDialog">Annuleren</button><button class="button danger" type="button" id="deleteArticleButton" hidden>Verwijderen</button><button class="button primary" type="submit">Opslaan</button></div>
+</form>
+</dialog>
+
+<dialog id="chapterDialog">
+<form id="chapterForm">
+  <div class="dialog-head"><div><span class="kicker">Indeling</span><h2 id="chapterDialogTitle">Nieuw hoofdstuk</h2></div><button type="button" data-close="chapterDialog">×</button></div>
+  <input id="chapterId" type="hidden">
+  <div class="form-grid">
+    <label class="wide">Naam<input id="chapterTitle" required></label>
+    <label>Slug<input id="chapterSlug" required></label>
+    <label>Icoon<input id="chapterIcon" placeholder="⚖"></label>
+    <label>Volgorde<input id="chapterOrder" type="number" value="0"></label>
+    <label class="wide">Omschrijving<textarea id="chapterDescription" rows="4"></textarea></label>
+    <label class="check wide"><input id="chapterPublished" type="checkbox" checked> Publiceren</label>
+  </div>
+  <div class="dialog-actions"><button type="button" class="button ghost" data-close="chapterDialog">Annuleren</button><button class="button primary" type="submit">Opslaan</button></div>
+</form>
+</dialog>
+
+<div id="toast" class="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase-config.js"></script>
+<script src="admin-v2.js?v=2.0"></script>
+</body>
+</html>
