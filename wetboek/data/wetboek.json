@@ -2,12 +2,13 @@
   "meta": {
     "title": "Wetboek GoudHaven",
     "lastUpdated": "29 juli 2026",
-    "version": "v3.0"
+    "version": "v4.0 concept"
   },
   "chapters": [
     {
       "id": "algemeen",
       "title": "Algemene bepalingen",
+      "icon": "⚖",
       "description": "Basisregels voor de toepassing van het volledige wetboek.",
       "articles": [
         {
@@ -23,43 +24,100 @@
           "tags": [
             "maximumstraf",
             "hoofdofficier"
-          ]
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
           "number": "1.2",
           "title": "Wijziging van wetgeving",
-          "description": "Wanneer wetgeving na het strafbare feit wordt gewijzigd, geldt de meest gunstige bepaling voor de verdachte.",
-          "penalty": {},
+          "description": "Wanneer wetgeving na het strafbare feit wordt gewijzigd, geldt de voor de verdachte meest gunstige bepaling.",
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": "",
+            "seize": ""
+          },
           "tags": [
             "wetswijziging",
             "verdachte"
-          ]
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
           "number": "1.3",
           "title": "Belangenverstrengeling",
-          "description": "Staffleden behandelen geen zaken waarbij zijzelf of direct betrokken bekenden partij zijn.",
-          "penalty": {},
+          "description": "Staffleden en overheidsmedewerkers behandelen geen zaken waarbij zijzelf of direct betrokken bekenden partij zijn.",
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": "",
+            "seize": ""
+          },
           "tags": [
             "staff",
             "onpartijdigheid"
-          ]
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
           "number": "1.4",
           "title": "Minderjarigen",
           "description": "Minderjarigen worden binnen GoudHaven strafrechtelijk behandeld als volwassenen.",
-          "penalty": {},
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": "",
+            "seize": ""
+          },
           "tags": [
             "minderjarig"
-          ]
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "1.5",
+          "title": "Samenloop van strafbare feiten",
+          "description": "Wanneer meerdere strafbare feiten tegelijk worden bewezen, kunnen de straffen worden opgeteld tot het geldende maximum.",
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": "",
+            "seize": ""
+          },
+          "tags": [
+            "samenloop",
+            "optellen"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "1.6",
+          "title": "Poging",
+          "description": "Een poging tot een strafbaar feit kan worden bestraft tot maximaal twee derde van de hoofdstraf.",
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": "",
+            "seize": ""
+          },
+          "tags": [
+            "poging"
+          ],
+          "updated": "",
+          "severity": "normaal"
         }
       ]
     },
     {
       "id": "strafbepalingen",
       "title": "Strafbepalingen",
-      "description": "Algemene regels over sancties, recidive en samenloop.",
+      "icon": "🏛",
+      "description": "Algemene regels over sancties, recidive en verzwarende omstandigheden.",
       "articles": [
         {
           "number": "2.1",
@@ -73,26 +131,30 @@
           },
           "tags": [
             "waarschuwing"
-          ]
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
           "number": "2.2",
           "title": "Taakstraf",
-          "description": "Een taakstraf kan zelfstandig of in combinatie met een andere straf worden opgelegd.",
+          "description": "Een taakstraf kan zelfstandig of aanvullend worden opgelegd.",
           "penalty": {
             "jail": "Volgens uitspraak",
             "fine": "Optioneel",
-            "points": "Optioneel",
-            "seize": "Volgens zaak"
+            "points": "Taakstraf",
+            "seize": "Geen"
           },
           "tags": [
             "taakstraf"
-          ]
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
           "number": "2.3",
           "title": "Recidive",
-          "description": "Bij herhaling van soortgelijke strafbare feiten kan de straf worden verzwaard.",
+          "description": "Bij herhaling van soortgelijke strafbare feiten kan de straf worden verhoogd.",
           "penalty": {
             "jail": "Tot +50%",
             "fine": "Tot +50%",
@@ -100,16 +162,67 @@
             "seize": "Volgens zaak"
           },
           "tags": [
-            "recidive",
-            "herhaling"
-          ]
+            "recidive"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "2.4",
+          "title": "Medeplichtigheid",
+          "description": "Het opzettelijk behulpzaam zijn bij het plegen van een strafbaar feit.",
+          "penalty": {
+            "jail": "Volgens aandeel",
+            "fine": "Volgens aandeel",
+            "points": "Volgens artikel",
+            "seize": "Volgens zaak"
+          },
+          "tags": [
+            "medeplichtigheid"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "2.5",
+          "title": "Voorbereidingshandelingen",
+          "description": "Het opzettelijk voorbereiden van een ernstig strafbaar feit door middelen, voertuigen of locaties beschikbaar te stellen.",
+          "penalty": {
+            "jail": "12 maanden",
+            "fine": "€20.000",
+            "points": "Geen",
+            "seize": "Gebruikte goederen"
+          },
+          "tags": [
+            "voorbereiding"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "2.6",
+          "title": "Weigeren identificatie",
+          "description": "Het niet tonen van een geldig identiteitsbewijs na een rechtmatige vordering.",
+          "penalty": {
+            "jail": "3 maanden",
+            "fine": "€7.500",
+            "points": "Geen",
+            "seize": "Geen"
+          },
+          "tags": [
+            "identificatie",
+            "id"
+          ],
+          "updated": "",
+          "severity": "normaal"
         }
       ]
     },
     {
       "id": "personen",
       "title": "Misdrijven tegen personen",
-      "description": "Feiten gericht tegen het leven, de gezondheid en persoonlijke vrijheid.",
+      "icon": "👤",
+      "description": "Feiten gericht tegen leven, gezondheid en persoonlijke vrijheid.",
       "articles": [
         {
           "number": "3.1",
@@ -122,14 +235,15 @@
             "seize": "Geen"
           },
           "tags": [
-            "bedreiging",
-            "geweld"
-          ]
+            "bedreiging"
+          ],
+          "updated": "",
+          "severity": "middel"
         },
         {
           "number": "3.2",
           "title": "Mishandeling",
-          "description": "Het opzettelijk toebrengen van lichamelijke pijn of letsel aan een ander.",
+          "description": "Het opzettelijk toebrengen van lichamelijke pijn of letsel.",
           "penalty": {
             "jail": "15 maanden",
             "fine": "€20.000",
@@ -137,9 +251,75 @@
             "seize": "Geen"
           },
           "tags": [
-            "mishandeling",
-            "letsel"
-          ]
+            "mishandeling"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "3.3",
+          "title": "Zware mishandeling",
+          "description": "Het opzettelijk veroorzaken van zwaar lichamelijk letsel.",
+          "penalty": {
+            "jail": "24 maanden",
+            "fine": "€40.000",
+            "points": "Geen",
+            "seize": "Gebruikt wapen"
+          },
+          "tags": [
+            "zware mishandeling"
+          ],
+          "updated": "",
+          "severity": "ernstig"
+        },
+        {
+          "number": "3.4",
+          "title": "Poging tot doodslag",
+          "description": "Het opzettelijk proberen een ander van het leven te beroven.",
+          "penalty": {
+            "jail": "40 maanden",
+            "fine": "€75.000",
+            "points": "Geen",
+            "seize": "Gebruikt wapen"
+          },
+          "tags": [
+            "doodslag",
+            "poging"
+          ],
+          "updated": "",
+          "severity": "ernstig"
+        },
+        {
+          "number": "3.5",
+          "title": "Doodslag",
+          "description": "Het opzettelijk van het leven beroven van een ander zonder voorbedachte raad.",
+          "penalty": {
+            "jail": "50 maanden",
+            "fine": "€100.000",
+            "points": "Geen",
+            "seize": "Gebruikt wapen"
+          },
+          "tags": [
+            "doodslag"
+          ],
+          "updated": "",
+          "severity": "zeer ernstig"
+        },
+        {
+          "number": "3.6",
+          "title": "Moord",
+          "description": "Het opzettelijk en met voorbedachte raad van het leven beroven van een ander.",
+          "penalty": {
+            "jail": "60 maanden",
+            "fine": "€150.000",
+            "points": "Geen",
+            "seize": "Gebruikt wapen"
+          },
+          "tags": [
+            "moord"
+          ],
+          "updated": "",
+          "severity": "zeer ernstig"
         },
         {
           "number": "3.7",
@@ -151,20 +331,69 @@
             "points": "Geen",
             "seize": "Gebruikte goederen"
           },
-          "notes": "Brandweermedewerkers die aantoonbaar in dienst zijn, mogen niet worden gegijzeld.",
           "tags": [
             "gijzeling",
             "ontvoering",
             "brandweer"
           ],
-          "updated": "29-07-2026"
+          "updated": "29-07-2026",
+          "severity": "ernstig"
+        },
+        {
+          "number": "3.8",
+          "title": "Ontvoering",
+          "description": "Het wederrechtelijk meenemen of verplaatsen van een persoon tegen diens wil.",
+          "penalty": {
+            "jail": "22 maanden",
+            "fine": "€32.500",
+            "points": "Geen",
+            "seize": "Gebruikte goederen"
+          },
+          "tags": [
+            "ontvoering"
+          ],
+          "updated": "",
+          "severity": "ernstig"
+        },
+        {
+          "number": "3.9",
+          "title": "Afpersing",
+          "description": "Door geweld of bedreiging iemand dwingen geld, goederen of informatie af te geven.",
+          "penalty": {
+            "jail": "20 maanden",
+            "fine": "€35.000",
+            "points": "Geen",
+            "seize": "Opbrengst"
+          },
+          "tags": [
+            "afpersing"
+          ],
+          "updated": "",
+          "severity": "ernstig"
+        },
+        {
+          "number": "3.10",
+          "title": "Stalking",
+          "description": "Het stelselmatig en opzettelijk lastigvallen of volgen van een persoon.",
+          "penalty": {
+            "jail": "8 maanden",
+            "fine": "€12.500",
+            "points": "Geen",
+            "seize": "Geen"
+          },
+          "tags": [
+            "stalking"
+          ],
+          "updated": "",
+          "severity": "normaal"
         }
       ]
     },
     {
       "id": "openbare-orde",
       "title": "Openbare orde",
-      "description": "Voorschriften voor rust, orde en veiligheid in GoudHaven.",
+      "icon": "🛡",
+      "description": "Voorschriften ter bescherming van rust en veiligheid in de stad.",
       "articles": [
         {
           "number": "4.1",
@@ -177,9 +406,10 @@
             "seize": "Volgens situatie"
           },
           "tags": [
-            "openbare orde",
-            "overlast"
-          ]
+            "openbare orde"
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
           "number": "4.2",
@@ -194,54 +424,85 @@
           "tags": [
             "bevel",
             "politie"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "geweld",
-      "title": "Geweldsdelicten",
-      "description": "Bepalingen over geweld, zware mishandeling en levensdelicten.",
-      "articles": [
-        {
-          "number": "5.1",
-          "title": "Zware mishandeling",
-          "description": "Het opzettelijk veroorzaken van zwaar lichamelijk letsel.",
-          "penalty": {
-            "jail": "24 maanden",
-            "fine": "€40.000",
-            "points": "Geen",
-            "seize": "Gebruikt wapen"
-          },
-          "tags": [
-            "zware mishandeling",
-            "geweld"
-          ]
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
-          "number": "5.2",
-          "title": "Poging tot doodslag",
-          "description": "Het opzettelijk proberen een ander van het leven te beroven.",
+          "number": "4.3",
+          "title": "Verboden samenscholing",
+          "description": "Het deelnemen aan een samenscholing die na een rechtmatig bevel niet wordt beëindigd.",
           "penalty": {
-            "jail": "40 maanden",
-            "fine": "€75.000",
+            "jail": "5 maanden",
+            "fine": "€8.000",
             "points": "Geen",
-            "seize": "Gebruikt wapen"
+            "seize": "Geen"
           },
           "tags": [
-            "doodslag",
-            "poging"
-          ]
+            "samenscholing"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "4.4",
+          "title": "Openbare dronkenschap",
+          "description": "In kennelijke staat van dronkenschap de openbare orde verstoren.",
+          "penalty": {
+            "jail": "Geen",
+            "fine": "€5.000",
+            "points": "Geen",
+            "seize": "Geen"
+          },
+          "tags": [
+            "dronkenschap"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "4.5",
+          "title": "Valse melding",
+          "description": "Het opzettelijk doen van een valse melding bij een hulpdienst.",
+          "penalty": {
+            "jail": "10 maanden",
+            "fine": "€17.500",
+            "points": "Geen",
+            "seize": "Geen"
+          },
+          "tags": [
+            "valse melding",
+            "112"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "4.6",
+          "title": "Brandstichting",
+          "description": "Het opzettelijk stichten van brand waardoor gevaar voor goederen of personen ontstaat.",
+          "penalty": {
+            "jail": "25 maanden",
+            "fine": "€50.000",
+            "points": "Geen",
+            "seize": "Gebruikte middelen"
+          },
+          "tags": [
+            "brandstichting"
+          ],
+          "updated": "",
+          "severity": "ernstig"
         }
       ]
     },
     {
       "id": "vermogen",
       "title": "Vermogensdelicten",
-      "description": "Diefstal, inbraak, overvallen, oplichting en witwassen.",
+      "icon": "💰",
+      "description": "Diefstal, inbraak, overvallen, fraude en witwassen.",
       "articles": [
         {
-          "number": "6.1",
+          "number": "5.1",
           "title": "Diefstal",
           "description": "Het wederrechtelijk wegnemen van een goed dat aan een ander toebehoort.",
           "penalty": {
@@ -251,30 +512,32 @@
             "seize": "Buit"
           },
           "tags": [
-            "diefstal",
-            "stelen"
-          ]
+            "diefstal"
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
-          "number": "6.2",
-          "title": "Overval met geweld",
-          "description": "Diefstal of afpersing waarbij geweld of bedreiging met geweld wordt gebruikt.",
+          "number": "5.2",
+          "title": "Woninginbraak",
+          "description": "Het wederrechtelijk binnendringen van een woning met het oogmerk goederen weg te nemen.",
           "penalty": {
-            "jail": "24 maanden",
-            "fine": "€45.000",
+            "jail": "18 maanden",
+            "fine": "€30.000",
             "points": "Geen",
-            "seize": "Buit en wapens"
+            "seize": "Buit en hulpmiddelen"
           },
           "tags": [
-            "overval",
-            "geweld"
+            "inbraak",
+            "woning"
           ],
-          "updated": "28-07-2026"
+          "updated": "",
+          "severity": "normaal"
         },
         {
-          "number": "6.3",
+          "number": "5.3",
           "title": "Voertuigdiefstal",
-          "description": "Het zonder toestemming wegnemen of gebruiken van een voertuig dat aan een ander toebehoort.",
+          "description": "Het zonder toestemming wegnemen of gebruiken van een voertuig.",
           "penalty": {
             "jail": "14 maanden",
             "fine": "€22.500",
@@ -282,570 +545,62 @@
             "seize": "Voertuig / buit"
           },
           "tags": [
-            "autodiefstal",
-            "voertuig"
-          ]
+            "autodiefstal"
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
-          "number": "6.4",
-          "title": "Witwassen",
-          "description": "Het verbergen, verhullen of omzetten van geld of goederen afkomstig uit misdrijf.",
+          "number": "5.4",
+          "title": "Overval",
+          "description": "Het onder bedreiging of geweld wegnemen van geld of goederen.",
           "penalty": {
             "jail": "22 maanden",
-            "fine": "€45.000",
-            "points": "Geen",
-            "seize": "Volledige opbrengst"
-          },
-          "tags": [
-            "witwassen",
-            "zwart geld"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "verkeer",
-      "title": "Verkeerswet",
-      "description": "Verkeersovertredingen en gevaarlijk rijgedrag.",
-      "articles": [
-        {
-          "number": "7.1",
-          "title": "Rijden zonder geldig rijbewijs",
-          "description": "Het besturen van een motorvoertuig zonder geldig rijbewijs.",
-          "penalty": {
-            "jail": "3 maanden",
-            "fine": "€10.000",
-            "points": "Geen",
-            "seize": "Voertuig mogelijk"
-          },
-          "tags": [
-            "rijbewijs",
-            "verkeer"
-          ]
-        },
-        {
-          "number": "7.2",
-          "title": "Roekeloos rijgedrag",
-          "description": "Het besturen van een voertuig op een wijze die ernstig gevaar veroorzaakt.",
-          "penalty": {
-            "jail": "5 maanden",
-            "fine": "€12.500",
-            "points": "2 punten",
-            "seize": "Voertuig mogelijk"
-          },
-          "tags": [
-            "roekeloos",
-            "gevaarlijk rijden"
-          ]
-        },
-        {
-          "number": "7.5",
-          "title": "Onverzekerd rijden",
-          "description": "Deelnemen aan het verkeer met een voertuig dat niet geldig verzekerd is.",
-          "penalty": {
-            "jail": "Geen",
-            "fine": "€12.000",
-            "points": "1 punt",
-            "seize": "Voertuig mogelijk"
-          },
-          "tags": [
-            "verzekering",
-            "onverzekerd"
-          ],
-          "updated": "29-07-2026"
-        }
-      ]
-    },
-    {
-      "id": "wapens",
-      "title": "Wapenwet",
-      "description": "Verboden bezit, gebruik en handel van wapens en munitie.",
-      "articles": [
-        {
-          "number": "8.1",
-          "title": "Verboden steekwapen",
-          "description": "Het zonder geldige reden voorhanden hebben of dragen van een verboden steekwapen.",
-          "penalty": {
-            "jail": "8 maanden",
-            "fine": "€15.000",
-            "points": "Geen",
-            "seize": "Wapen"
-          },
-          "tags": [
-            "mes",
-            "steekwapen"
-          ]
-        },
-        {
-          "number": "8.2",
-          "title": "Verboden vuurwapenbezit",
-          "description": "Het zonder bevoegdheid voorhanden hebben of dragen van een vuurwapen.",
-          "penalty": {
-            "jail": "20 maanden",
-            "fine": "€30.000",
-            "points": "Geen",
-            "seize": "Wapen en munitie"
-          },
-          "tags": [
-            "pistool",
-            "vuurwapen"
-          ]
-        },
-        {
-          "number": "8.3",
-          "title": "Zware vuurwapens",
-          "description": "Het zonder bevoegdheid voorhanden hebben van automatische wapens, zware geweren of vergelijkbare wapens.",
-          "penalty": {
-            "jail": "30 maanden",
-            "fine": "€55.000",
-            "points": "Geen",
-            "seize": "Wapen en munitie"
-          },
-          "tags": [
-            "smg",
-            "assault rifle",
-            "automatisch wapen"
-          ],
-          "updated": "29-07-2026"
-        }
-      ]
-    },
-    {
-      "id": "opiumwet",
-      "title": "Opiumwet & verboden middelen",
-      "description": "Bezit, productie, verwerking, verpakking, vervoer en handel van drugs.",
-      "articles": [
-        {
-          "number": "9.1",
-          "title": "Bezit van wiet",
-          "description": "Het opzettelijk in bezit hebben van wiet boven de toegestane gebruikershoeveelheid.",
-          "penalty": {
-            "jail": "6 maanden",
-            "fine": "€10.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "wiet",
-            "cannabis",
-            "joint",
-            "softdrugs"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.2",
-          "title": "Verwerken van wiet",
-          "description": "Het knippen, drogen, verwerken of gereedmaken van wiet voor verdere verkoop of distributie.",
-          "penalty": {
-            "jail": "10 maanden",
-            "fine": "€18.000",
-            "points": "Geen",
-            "seize": "Inbeslagname installatie"
-          },
-          "tags": [
-            "wiet verwerken",
-            "wiet drogen",
-            "knippen"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.3",
-          "title": "Handel in wiet",
-          "description": "Het verkopen, afleveren, vervoeren of verstrekken van wiet aan een ander.",
-          "penalty": {
-            "jail": "14 maanden",
-            "fine": "€25.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "wiet handel",
-            "dealer",
-            "softdrugs"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.4",
-          "title": "Bezit van cocaïne",
-          "description": "Het opzettelijk in bezit hebben van cocaïne, coke of crack.",
-          "penalty": {
-            "jail": "15 maanden",
-            "fine": "€30.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "coke",
-            "cocaïne",
-            "crack",
-            "harddrugs"
-          ],
-          "updated": "29-07-2026"
-        },
-        {
-          "number": "9.5",
-          "title": "Verwerken van cocaïne",
-          "description": "Het verwerken, versnijden, persen of verpakken van cocaïne.",
-          "penalty": {
-            "jail": "20 maanden",
             "fine": "€40.000",
             "points": "Geen",
-            "seize": "Inbeslagname installatie"
+            "seize": "Buit en wapens"
           },
           "tags": [
-            "coke verwerken",
-            "cocaïne persen",
-            "coke verpakken"
+            "overval"
           ],
-          "updated": ""
+          "updated": "",
+          "severity": "ernstig"
         },
         {
-          "number": "9.6",
-          "title": "Handel in cocaïne",
-          "description": "Het verkopen, afleveren, vervoeren of verstrekken van cocaïne.",
-          "penalty": {
-            "jail": "26 maanden",
-            "fine": "€55.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "coke handel",
-            "cocaïne dealer"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.7",
-          "title": "Productie van meth",
-          "description": "Het vervaardigen, koken, verwerken of bereiden van methamfetamine.",
-          "penalty": {
-            "jail": "30 maanden",
-            "fine": "€65.000",
-            "points": "Geen",
-            "seize": "Inbeslagname laboratorium"
-          },
-          "tags": [
-            "meth productie",
-            "methamfetamine",
-            "meth lab"
-          ],
-          "updated": "29-07-2026"
-        },
-        {
-          "number": "9.8",
-          "title": "Verpakken van meth",
-          "description": "Het verpakken of gereedmaken van methamfetamine voor vervoer of verkoop.",
-          "penalty": {
-            "jail": "18 maanden",
-            "fine": "€35.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "meth verpakken",
-            "meth pakket"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.9",
-          "title": "Productie van speed",
-          "description": "Het vervaardigen, mengen of verwerken van amfetamine of speed.",
-          "penalty": {
-            "jail": "24 maanden",
-            "fine": "€50.000",
-            "points": "Geen",
-            "seize": "Inbeslagname laboratorium"
-          },
-          "tags": [
-            "speed productie",
-            "amfetamine",
-            "speed lab"
-          ],
-          "updated": "29-07-2026"
-        },
-        {
-          "number": "9.10",
-          "title": "Verpakken van speed",
-          "description": "Het verpakken of gereedmaken van speed of amfetamine voor distributie.",
-          "penalty": {
-            "jail": "16 maanden",
-            "fine": "€30.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "speed verpakken",
-            "amfetamine verpakken"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.11",
-          "title": "Productie van lean",
-          "description": "Het bereiden, mengen of produceren van lean of soortgelijke verboden drankmengsels.",
-          "penalty": {
-            "jail": "18 maanden",
-            "fine": "€35.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "lean productie",
-            "lean proces",
-            "purple drank"
-          ],
-          "updated": "29-07-2026"
-        },
-        {
-          "number": "9.12",
-          "title": "Verpakken of vervoeren van lean",
-          "description": "Het verpakken, opslaan of vervoeren van lean met het oog op verkoop of distributie.",
-          "penalty": {
-            "jail": "14 maanden",
-            "fine": "€25.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "lean verpakken",
-            "lean vervoer"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.13",
-          "title": "Verwerken van opium",
-          "description": "Het verwerken, bereiden of gereedmaken van opium voor verdere distributie.",
-          "penalty": {
-            "jail": "22 maanden",
-            "fine": "€45.000",
-            "points": "Geen",
-            "seize": "Inbeslagname installatie"
-          },
-          "tags": [
-            "opium verwerken",
-            "opium proces"
-          ],
-          "updated": "29-07-2026"
-        },
-        {
-          "number": "9.14",
-          "title": "Bezit van heroïne",
-          "description": "Het opzettelijk in bezit hebben van heroïne.",
-          "penalty": {
-            "jail": "18 maanden",
-            "fine": "€35.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "heroïne",
-            "harddrugs"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.15",
-          "title": "Handel in heroïne",
-          "description": "Het verkopen, vervoeren of verstrekken van heroïne.",
-          "penalty": {
-            "jail": "28 maanden",
-            "fine": "€60.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "heroïne handel",
-            "dealer"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.16",
-          "title": "Bezit van XTC of MDMA",
-          "description": "Het opzettelijk in bezit hebben van XTC, MDMA of vergelijkbare synthetische drugs.",
-          "penalty": {
-            "jail": "15 maanden",
-            "fine": "€30.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "xtc",
-            "mdma",
-            "pillen"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.17",
-          "title": "Productie van XTC of MDMA",
-          "description": "Het produceren, persen of verwerken van XTC, MDMA of synthetische pillen.",
-          "penalty": {
-            "jail": "28 maanden",
-            "fine": "€60.000",
-            "points": "Geen",
-            "seize": "Inbeslagname laboratorium"
-          },
-          "tags": [
-            "xtc lab",
-            "mdma productie",
-            "pillen persen"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.18",
-          "title": "Bezit van LSD of paddo's",
-          "description": "Het opzettelijk in bezit hebben van LSD, paddo's of vergelijkbare hallucinogene middelen.",
-          "penalty": {
-            "jail": "12 maanden",
-            "fine": "€22.500",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "lsd",
-            "paddo",
-            "hallucinogenen"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.19",
-          "title": "Bezit van ketamine",
-          "description": "Het opzettelijk in bezit hebben van ketamine zonder geldige bevoegdheid.",
-          "penalty": {
-            "jail": "15 maanden",
-            "fine": "€30.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "ketamine",
-            "keta"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.20",
-          "title": "Bezit van fentanyl",
-          "description": "Het opzettelijk in bezit hebben van fentanyl of daarvan afgeleide verboden middelen.",
-          "penalty": {
-            "jail": "22 maanden",
-            "fine": "€50.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "fentanyl",
-            "opioïde"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.21",
-          "title": "Bezit van drugsgrondstoffen",
-          "description": "Het zonder aannemelijke legale bestemming voorhanden hebben van chemicaliën, apparatuur of grondstoffen bestemd voor drugsproductie.",
-          "penalty": {
-            "jail": "18 maanden",
-            "fine": "€40.000",
-            "points": "Geen",
-            "seize": "Inbeslagname"
-          },
-          "tags": [
-            "chemicaliën",
-            "grondstoffen",
-            "precursoren"
-          ],
-          "updated": ""
-        },
-        {
-          "number": "9.22",
-          "title": "Exploitatie van een drugslab",
-          "description": "Het beheren, financieren, beveiligen of beschikbaar stellen van een laboratorium voor de productie van verboden middelen.",
+          "number": "5.5",
+          "title": "Bankoverval",
+          "description": "Het onder bedreiging of geweld overvallen van een bank of vergelijkbare financiële instelling.",
           "penalty": {
             "jail": "35 maanden",
-            "fine": "€80.000",
+            "fine": "€75.000",
             "points": "Geen",
-            "seize": "Volledige inbeslagname"
+            "seize": "Buit, wapens en voertuig"
           },
           "tags": [
-            "drugslab",
-            "laboratorium",
-            "productielocatie"
+            "bankoverval"
           ],
-          "updated": "29-07-2026"
+          "updated": "",
+          "severity": "zeer ernstig"
         },
         {
-          "number": "9.23",
-          "title": "Witwassen van drugsopbrengsten",
-          "description": "Het verbergen, verhullen of omzetten van geld of goederen afkomstig uit de productie of handel in verboden middelen.",
+          "number": "5.6",
+          "title": "Juweliersoverval",
+          "description": "Het onder bedreiging of geweld overvallen van een juwelier.",
           "penalty": {
             "jail": "30 maanden",
-            "fine": "€90.000",
+            "fine": "€60.000",
             "points": "Geen",
-            "seize": "Volledige inbeslagname"
+            "seize": "Buit, wapens en voertuig"
           },
           "tags": [
-            "drugsgeld",
-            "witwassen",
-            "zwart geld"
+            "juwelier",
+            "overval"
           ],
-          "updated": ""
-        }
-      ]
-    },
-    {
-      "id": "overheid",
-      "title": "Overheidsmisdrijven",
-      "description": "Strafbare feiten gericht tegen hulpdiensten en ambtenaren.",
-      "articles": [
-        {
-          "number": "10.1",
-          "title": "Belemmeren politie",
-          "description": "Het opzettelijk hinderen of onmogelijk maken van rechtmatige politiewerkzaamheden.",
-          "penalty": {
-            "jail": "8 maanden",
-            "fine": "€15.000",
-            "points": "Geen",
-            "seize": "Volgens situatie"
-          },
-          "tags": [
-            "politie",
-            "belemmeren"
-          ],
-          "updated": "28-07-2026"
+          "updated": "",
+          "severity": "ernstig"
         },
         {
-          "number": "10.2",
-          "title": "Omkoping van een ambtenaar",
-          "description": "Het aanbieden, beloven of geven van voordelen om een ambtenaar te beïnvloeden.",
-          "penalty": {
-            "jail": "20 maanden",
-            "fine": "€40.000",
-            "points": "Geen",
-            "seize": "Betaalmiddel"
-          },
-          "tags": [
-            "omkoping",
-            "corruptie"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "economisch",
-      "title": "Economische delicten",
-      "description": "Fraude, illegale handel en misbruik van ondernemingen.",
-      "articles": [
-        {
-          "number": "11.1",
+          "number": "5.7",
           "title": "Oplichting",
           "description": "Het door misleiding bewegen van een ander tot afgifte van geld of goederen.",
           "penalty": {
@@ -857,12 +612,14 @@
           "tags": [
             "oplichting",
             "fraude"
-          ]
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
-          "number": "11.2",
+          "number": "5.8",
           "title": "Heling",
-          "description": "Het verwerven, voorhanden hebben of verkopen van goederen waarvan men weet of redelijkerwijs moet vermoeden dat zij uit misdrijf afkomstig zijn.",
+          "description": "Het verwerven, voorhanden hebben of verkopen van goederen waarvan men weet of vermoedt dat deze uit misdrijf afkomstig zijn.",
           "penalty": {
             "jail": "14 maanden",
             "fine": "€25.000",
@@ -870,57 +627,1294 @@
             "seize": "Goederen"
           },
           "tags": [
-            "heling",
-            "gestolen goederen"
-          ]
+            "heling"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "5.9",
+          "title": "Witwassen",
+          "description": "Het verbergen, verhullen of omzetten van geld of goederen afkomstig uit misdrijf.",
+          "penalty": {
+            "jail": "22 maanden",
+            "fine": "€45.000",
+            "points": "Geen",
+            "seize": "Volledige opbrengst"
+          },
+          "tags": [
+            "witwassen",
+            "zwart geld"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "5.10",
+          "title": "Vals geld",
+          "description": "Het produceren, bezitten of uitgeven van vervalst geld.",
+          "penalty": {
+            "jail": "20 maanden",
+            "fine": "€40.000",
+            "points": "Geen",
+            "seize": "Vals geld en apparatuur"
+          },
+          "tags": [
+            "vals geld"
+          ],
+          "updated": "",
+          "severity": "normaal"
         }
       ]
     },
     {
-      "id": "bijzonder",
-      "title": "Bijzondere bepalingen",
-      "description": "Aanvullende bepalingen voor specifieke situaties.",
+      "id": "verkeer",
+      "title": "Verkeerswet",
+      "icon": "🚗",
+      "description": "Verkeersovertredingen en gevaarlijk rijgedrag.",
       "articles": [
         {
-          "number": "12.1",
-          "title": "Poging",
-          "description": "Een poging tot een strafbaar feit kan worden bestraft tot maximaal twee derde van de hoofdstraf.",
+          "number": "6.1",
+          "title": "Rijden zonder geldig rijbewijs",
+          "description": "Het besturen van een motorvoertuig zonder geldig rijbewijs.",
           "penalty": {
-            "jail": "Max. ⅔",
-            "fine": "Max. ⅔",
-            "points": "Volgens artikel",
-            "seize": "Volgens zaak"
+            "jail": "3 maanden",
+            "fine": "€10.000",
+            "points": "Geen",
+            "seize": "Voertuig mogelijk"
           },
           "tags": [
-            "poging"
-          ]
+            "rijbewijs"
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
-          "number": "12.2",
-          "title": "Medeplichtigheid",
-          "description": "Het opzettelijk behulpzaam zijn bij het plegen van een strafbaar feit.",
+          "number": "6.2",
+          "title": "Roekeloos rijgedrag",
+          "description": "Het besturen van een voertuig op een wijze die ernstig gevaar veroorzaakt.",
           "penalty": {
-            "jail": "Volgens aandeel",
-            "fine": "Volgens aandeel",
-            "points": "Volgens artikel",
-            "seize": "Volgens zaak"
+            "jail": "5 maanden",
+            "fine": "€12.500",
+            "points": "2 punten",
+            "seize": "Voertuig mogelijk"
           },
           "tags": [
-            "medeplichtig",
-            "hulp"
-          ]
+            "roekeloos"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "6.3",
+          "title": "Vluchten voor stopteken",
+          "description": "Het niet opvolgen van een rechtsgeldig stopteken van politie of Koninklijke Marechaussee.",
+          "penalty": {
+            "jail": "12 maanden",
+            "fine": "€18.000",
+            "points": "3 punten",
+            "seize": "Voertuig mogelijk"
+          },
+          "tags": [
+            "stopteken",
+            "achtervolging"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "6.4",
+          "title": "Onverzekerd rijden",
+          "description": "Deelnemen aan het verkeer met een voertuig dat niet geldig verzekerd is.",
+          "penalty": {
+            "jail": "Geen",
+            "fine": "€12.000",
+            "points": "1 punt",
+            "seize": "Voertuig mogelijk"
+          },
+          "tags": [
+            "onverzekerd"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "6.5",
+          "title": "Spookrijden",
+          "description": "Tegen de toegestane rijrichting in rijden en daarmee gevaar veroorzaken.",
+          "penalty": {
+            "jail": "4 maanden",
+            "fine": "€10.000",
+            "points": "2 punten",
+            "seize": "Geen"
+          },
+          "tags": [
+            "spookrijden"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "6.6",
+          "title": "Straatrace",
+          "description": "Deelnemen aan een niet-toegestane snelheidswedstrijd op de openbare weg.",
+          "penalty": {
+            "jail": "8 maanden",
+            "fine": "€20.000",
+            "points": "3 punten",
+            "seize": "Voertuig mogelijk"
+          },
+          "tags": [
+            "streetrace",
+            "race"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "6.7",
+          "title": "Doorrijden na ongeval",
+          "description": "De plaats van een ongeval verlaten zonder gegevens achter te laten of hulp te verlenen.",
+          "penalty": {
+            "jail": "8 maanden",
+            "fine": "€15.000",
+            "points": "2 punten",
+            "seize": "Geen"
+          },
+          "tags": [
+            "doorrijden",
+            "ongeval"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "6.8",
+          "title": "Rijden onder invloed",
+          "description": "Het besturen van een voertuig onder invloed van alcohol of verdovende middelen.",
+          "penalty": {
+            "jail": "6 maanden",
+            "fine": "€15.000",
+            "points": "3 punten",
+            "seize": "Rijbewijs mogelijk"
+          },
+          "tags": [
+            "alcohol",
+            "drugs",
+            "rijden"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "6.9",
+          "title": "Gevaarlijk parkeren",
+          "description": "Een voertuig zodanig parkeren dat ernstig gevaar of hinder ontstaat.",
+          "penalty": {
+            "jail": "Geen",
+            "fine": "€5.000",
+            "points": "Geen",
+            "seize": "Wegslepen mogelijk"
+          },
+          "tags": [
+            "parkeren"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "6.10",
+          "title": "Illegale voertuigaanpassing",
+          "description": "Het deelnemen aan verkeer met verboden of gevaarlijke voertuigaanpassingen.",
+          "penalty": {
+            "jail": "Geen",
+            "fine": "€12.500",
+            "points": "1 punt",
+            "seize": "Voertuig mogelijk"
+          },
+          "tags": [
+            "tuning",
+            "illegaal"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        }
+      ]
+    },
+    {
+      "id": "wapens",
+      "title": "Wapenwet",
+      "icon": "🔫",
+      "description": "Verboden bezit, gebruik, handel en productie van wapens.",
+      "articles": [
+        {
+          "number": "7.1",
+          "title": "Verboden steekwapen",
+          "description": "Het zonder geldige reden voorhanden hebben of dragen van een verboden steekwapen.",
+          "penalty": {
+            "jail": "8 maanden",
+            "fine": "€15.000",
+            "points": "Geen",
+            "seize": "Wapen"
+          },
+          "tags": [
+            "mes",
+            "steekwapen"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "7.2",
+          "title": "Verboden vuurwapenbezit",
+          "description": "Het zonder bevoegdheid voorhanden hebben of dragen van een vuurwapen.",
+          "penalty": {
+            "jail": "20 maanden",
+            "fine": "€30.000",
+            "points": "Geen",
+            "seize": "Wapen en munitie"
+          },
+          "tags": [
+            "pistool",
+            "vuurwapen"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "7.3",
+          "title": "Zwaar vuurwapenbezit",
+          "description": "Het zonder bevoegdheid voorhanden hebben van automatische of zware vuurwapens.",
+          "penalty": {
+            "jail": "30 maanden",
+            "fine": "€55.000",
+            "points": "Geen",
+            "seize": "Wapen en munitie"
+          },
+          "tags": [
+            "smg",
+            "assault rifle",
+            "automatisch"
+          ],
+          "updated": "",
+          "severity": "ernstig"
+        },
+        {
+          "number": "7.4",
+          "title": "Verboden munitiebezit",
+          "description": "Het zonder bevoegdheid voorhanden hebben van munitie.",
+          "penalty": {
+            "jail": "8 maanden",
+            "fine": "€15.000",
+            "points": "Geen",
+            "seize": "Munitie"
+          },
+          "tags": [
+            "munitie",
+            "kogels"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "7.5",
+          "title": "Wapenhandel",
+          "description": "Het verkopen, leveren, vervoeren of bemiddelen bij verboden wapens.",
+          "penalty": {
+            "jail": "28 maanden",
+            "fine": "€60.000",
+            "points": "Geen",
+            "seize": "Wapens, munitie en opbrengst"
+          },
+          "tags": [
+            "wapenhandel"
+          ],
+          "updated": "",
+          "severity": "ernstig"
+        },
+        {
+          "number": "7.6",
+          "title": "Illegale wapenproductie",
+          "description": "Het vervaardigen of ombouwen van wapens zonder bevoegdheid.",
+          "penalty": {
+            "jail": "30 maanden",
+            "fine": "€65.000",
+            "points": "Geen",
+            "seize": "Werkplaats en wapens"
+          },
+          "tags": [
+            "wapenproductie"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "7.7",
+          "title": "Gebruik van vuurwapen",
+          "description": "Het afvuren of dreigend gebruiken van een vuurwapen zonder rechtvaardigingsgrond.",
+          "penalty": {
+            "jail": "30 maanden",
+            "fine": "€45.000",
+            "points": "Geen",
+            "seize": "Wapen"
+          },
+          "tags": [
+            "schieten",
+            "vuurwapen"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "7.8",
+          "title": "Explosievenbezit",
+          "description": "Het zonder bevoegdheid bezitten van explosieven of explosieve hulpmiddelen.",
+          "penalty": {
+            "jail": "35 maanden",
+            "fine": "€75.000",
+            "points": "Geen",
+            "seize": "Explosieven"
+          },
+          "tags": [
+            "explosief",
+            "bom"
+          ],
+          "updated": "",
+          "severity": "zeer ernstig"
+        }
+      ]
+    },
+    {
+      "id": "drugs",
+      "title": "Opiumwet & verboden middelen",
+      "icon": "💊",
+      "description": "Bezit, productie, verwerking, verpakking, vervoer en handel van drugs.",
+      "articles": [
+        {
+          "number": "8.1",
+          "title": "Bezit van wiet",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder bezit van wiet, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "6 maanden",
+            "fine": "€10.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "wiet",
+            "cannabis",
+            "joint",
+            "softdrugs"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.2",
+          "title": "Verwerken van wiet",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder verwerken van wiet, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "10 maanden",
+            "fine": "€18.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "wiet",
+            "verwerken",
+            "drogen",
+            "knippen"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.3",
+          "title": "Handel in wiet",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder handel in wiet, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "14 maanden",
+            "fine": "€25.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "wiet",
+            "handel",
+            "dealer",
+            "softdrugs"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.4",
+          "title": "Bezit van hasj",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder bezit van hasj, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "6 maanden",
+            "fine": "€10.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "hasj",
+            "hash",
+            "cannabis"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.5",
+          "title": "Handel in hasj",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder handel in hasj, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "14 maanden",
+            "fine": "€25.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "hasj",
+            "handel",
+            "hash",
+            "dealer"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.6",
+          "title": "Bezit van cocaïne",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder bezit van cocaïne, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "15 maanden",
+            "fine": "€30.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "coke",
+            "cocaïne",
+            "crack",
+            "harddrugs"
+          ],
+          "updated": "29-07-2026",
+          "severity": "middel"
+        },
+        {
+          "number": "8.7",
+          "title": "Verwerken van cocaïne",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder verwerken van cocaïne, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "20 maanden",
+            "fine": "€40.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "coke",
+            "verwerken",
+            "persen",
+            "versnijden",
+            "verpakken"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.8",
+          "title": "Handel in cocaïne",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder handel in cocaïne, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "26 maanden",
+            "fine": "€55.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "coke",
+            "handel",
+            "cocaïne",
+            "dealer"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.9",
+          "title": "Productie van meth",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder productie van meth, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "30 maanden",
+            "fine": "€65.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "meth",
+            "productie",
+            "methamfetamine",
+            "laboratorium"
+          ],
+          "updated": "29-07-2026",
+          "severity": "middel"
+        },
+        {
+          "number": "8.10",
+          "title": "Verpakken van meth",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder verpakken van meth, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "18 maanden",
+            "fine": "€35.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "meth",
+            "verpakken",
+            "pakket"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.11",
+          "title": "Handel in meth",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder handel in meth, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "28 maanden",
+            "fine": "€60.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "meth",
+            "handel",
+            "dealer"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.12",
+          "title": "Productie van speed",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder productie van speed, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "24 maanden",
+            "fine": "€50.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "speed",
+            "productie",
+            "amfetamine",
+            "lab"
+          ],
+          "updated": "29-07-2026",
+          "severity": "middel"
+        },
+        {
+          "number": "8.13",
+          "title": "Verpakken van speed",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder verpakken van speed, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "16 maanden",
+            "fine": "€30.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "speed",
+            "verpakken",
+            "amfetamine"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.14",
+          "title": "Handel in speed",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder handel in speed, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "24 maanden",
+            "fine": "€50.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "speed",
+            "handel",
+            "amfetamine",
+            "dealer"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.15",
+          "title": "Productie van lean",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder productie van lean, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "18 maanden",
+            "fine": "€35.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "lean",
+            "productie",
+            "proces",
+            "purple",
+            "drank"
+          ],
+          "updated": "29-07-2026",
+          "severity": "middel"
+        },
+        {
+          "number": "8.16",
+          "title": "Verpakken van lean",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder verpakken van lean, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "14 maanden",
+            "fine": "€25.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "lean",
+            "verpakken",
+            "vervoer"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.17",
+          "title": "Verwerken van opium",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder verwerken van opium, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "22 maanden",
+            "fine": "€45.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "opium",
+            "verwerken",
+            "proces"
+          ],
+          "updated": "29-07-2026",
+          "severity": "middel"
+        },
+        {
+          "number": "8.18",
+          "title": "Bezit van heroïne",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder bezit van heroïne, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "18 maanden",
+            "fine": "€35.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "heroïne",
+            "harddrugs"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.19",
+          "title": "Handel in heroïne",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder handel in heroïne, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "28 maanden",
+            "fine": "€60.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "heroïne",
+            "handel",
+            "dealer"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.20",
+          "title": "Bezit van XTC of MDMA",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder bezit van xtc of mdma, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "15 maanden",
+            "fine": "€30.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "xtc",
+            "mdma",
+            "pillen"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.21",
+          "title": "Productie van XTC of MDMA",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder productie van xtc of mdma, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "28 maanden",
+            "fine": "€60.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "xtc",
+            "lab",
+            "mdma",
+            "productie",
+            "pillen",
+            "persen"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.22",
+          "title": "Bezit van LSD",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder bezit van lsd, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "12 maanden",
+            "fine": "€22.500",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "lsd",
+            "hallucinogeen"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.23",
+          "title": "Bezit van paddo's",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder bezit van paddo's, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "10 maanden",
+            "fine": "€20.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "paddo",
+            "paddestoel",
+            "hallucinogeen"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.24",
+          "title": "Bezit van ketamine",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder bezit van ketamine, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "15 maanden",
+            "fine": "€30.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "ketamine",
+            "keta"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.25",
+          "title": "Bezit van GHB",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder bezit van ghb, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "15 maanden",
+            "fine": "€30.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "ghb",
+            "drugs"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.26",
+          "title": "Bezit van fentanyl",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder bezit van fentanyl, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "22 maanden",
+            "fine": "€50.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "fentanyl",
+            "opioïde"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.27",
+          "title": "Bezit van morfine",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder bezit van morfine, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "15 maanden",
+            "fine": "€30.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "morfine",
+            "opioïde"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.28",
+          "title": "Bezit van oxycodon",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder bezit van oxycodon, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "15 maanden",
+            "fine": "€30.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "oxycodon",
+            "oxy",
+            "opioïde"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.29",
+          "title": "Bezit van PCP",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder bezit van pcp, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "18 maanden",
+            "fine": "€35.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "pcp",
+            "angel",
+            "dust"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.30",
+          "title": "Drugsgrondstoffen",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder drugsgrondstoffen, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "18 maanden",
+            "fine": "€40.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "chemicaliën",
+            "precursoren",
+            "aceton",
+            "zwavelzuur",
+            "pseudo-efedrine"
+          ],
+          "updated": "",
+          "severity": "middel"
+        },
+        {
+          "number": "8.31",
+          "title": "Exploitatie van een drugslab",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder exploitatie van een drugslab, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "35 maanden",
+            "fine": "€80.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "drugslab",
+            "laboratorium",
+            "productie"
+          ],
+          "updated": "29-07-2026",
+          "severity": "ernstig"
+        },
+        {
+          "number": "8.32",
+          "title": "Faciliteren van drugsproductie",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder faciliteren van drugsproductie, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "20 maanden",
+            "fine": "€40.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "locatie",
+            "voertuig",
+            "materiaal",
+            "beschikbaar",
+            "stellen"
+          ],
+          "updated": "",
+          "severity": "ernstig"
+        },
+        {
+          "number": "8.33",
+          "title": "Drugstransport",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder drugstransport, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "22 maanden",
+            "fine": "€45.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "vervoeren",
+            "transport",
+            "koerier",
+            "drugs"
+          ],
+          "updated": "",
+          "severity": "ernstig"
+        },
+        {
+          "number": "8.34",
+          "title": "Import van drugs",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder import van drugs, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "30 maanden",
+            "fine": "€70.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "import",
+            "grens",
+            "invoer",
+            "drugs"
+          ],
+          "updated": "",
+          "severity": "ernstig"
+        },
+        {
+          "number": "8.35",
+          "title": "Export van drugs",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder export van drugs, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "30 maanden",
+            "fine": "€70.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "export",
+            "uitvoer",
+            "drugs"
+          ],
+          "updated": "",
+          "severity": "ernstig"
+        },
+        {
+          "number": "8.36",
+          "title": "Witwassen van drugsopbrengsten",
+          "description": "Het opzettelijk plegen van handelingen die vallen onder witwassen van drugsopbrengsten, zoals omschreven binnen de Opiumwet van GoudHaven.",
+          "penalty": {
+            "jail": "30 maanden",
+            "fine": "€90.000",
+            "points": "Geen",
+            "seize": "Drugs, opbrengst en gebruikte middelen"
+          },
+          "tags": [
+            "drugsgeld",
+            "witwassen",
+            "zwart",
+            "geld"
+          ],
+          "updated": "",
+          "severity": "ernstig"
+        }
+      ]
+    },
+    {
+      "id": "overheid",
+      "title": "Overheidsmisdrijven",
+      "icon": "👮",
+      "description": "Strafbare feiten gericht tegen hulpdiensten en ambtenaren.",
+      "articles": [
+        {
+          "number": "9.1",
+          "title": "Belemmeren politie",
+          "description": "Het opzettelijk hinderen van rechtmatige politiewerkzaamheden.",
+          "penalty": {
+            "jail": "8 maanden",
+            "fine": "€15.000",
+            "points": "Geen",
+            "seize": "Volgens situatie"
+          },
+          "tags": [
+            "politie"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "9.2",
+          "title": "Belemmeren Koninklijke Marechaussee",
+          "description": "Het opzettelijk hinderen van rechtmatige werkzaamheden van de Koninklijke Marechaussee.",
+          "penalty": {
+            "jail": "8 maanden",
+            "fine": "€15.000",
+            "points": "Geen",
+            "seize": "Volgens situatie"
+          },
+          "tags": [
+            "kmar"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "9.3",
+          "title": "Belemmeren ambulance",
+          "description": "Het opzettelijk hinderen van medische hulpverlening.",
+          "penalty": {
+            "jail": "10 maanden",
+            "fine": "€17.500",
+            "points": "Geen",
+            "seize": "Volgens situatie"
+          },
+          "tags": [
+            "ambulance"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "9.4",
+          "title": "Belemmeren brandweer",
+          "description": "Het opzettelijk hinderen van brandweerwerkzaamheden.",
+          "penalty": {
+            "jail": "10 maanden",
+            "fine": "€17.500",
+            "points": "Geen",
+            "seize": "Volgens situatie"
+          },
+          "tags": [
+            "brandweer"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "9.5",
+          "title": "Omkoping van een ambtenaar",
+          "description": "Het aanbieden, beloven of geven van voordelen om een ambtenaar te beïnvloeden.",
+          "penalty": {
+            "jail": "20 maanden",
+            "fine": "€40.000",
+            "points": "Geen",
+            "seize": "Betaalmiddel"
+          },
+          "tags": [
+            "omkoping",
+            "corruptie"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "9.6",
+          "title": "Ambtelijke corruptie",
+          "description": "Het als ambtenaar misbruiken van bevoegdheden voor persoonlijk of crimineel voordeel.",
+          "penalty": {
+            "jail": "30 maanden",
+            "fine": "€75.000",
+            "points": "Geen",
+            "seize": "Opbrengst"
+          },
+          "tags": [
+            "corruptie"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "9.7",
+          "title": "Valse aangifte",
+          "description": "Het opzettelijk doen van een geheel of gedeeltelijk onware aangifte.",
+          "penalty": {
+            "jail": "12 maanden",
+            "fine": "€20.000",
+            "points": "Geen",
+            "seize": "Geen"
+          },
+          "tags": [
+            "aangifte",
+            "vals"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "9.8",
+          "title": "Mishandeling van ambtenaar",
+          "description": "Het mishandelen van een ambtenaar gedurende of vanwege diens functie.",
+          "penalty": {
+            "jail": "22 maanden",
+            "fine": "€40.000",
+            "points": "Geen",
+            "seize": "Gebruikt wapen"
+          },
+          "tags": [
+            "ambtenaar",
+            "mishandeling"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        }
+      ]
+    },
+    {
+      "id": "economisch",
+      "title": "Economische delicten",
+      "icon": "💼",
+      "description": "Fraude, illegale handel en misbruik van ondernemingen.",
+      "articles": [
+        {
+          "number": "10.1",
+          "title": "Boekhoudfraude",
+          "description": "Het opzettelijk vervalsen of achterhouden van bedrijfsadministratie.",
+          "penalty": {
+            "jail": "18 maanden",
+            "fine": "€40.000",
+            "points": "Geen",
+            "seize": "Administratie en opbrengst"
+          },
+          "tags": [
+            "boekhouding",
+            "fraude"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "10.2",
+          "title": "Belastingfraude",
+          "description": "Het opzettelijk onjuist of onvolledig aangeven van belastbare inkomsten of omzet.",
+          "penalty": {
+            "jail": "20 maanden",
+            "fine": "€50.000",
+            "points": "Geen",
+            "seize": "Opbrengst"
+          },
+          "tags": [
+            "belasting",
+            "fraude"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "10.3",
+          "title": "Illegale onderneming",
+          "description": "Het exploiteren van een onderneming zonder vereiste toestemming of voor criminele activiteiten.",
+          "penalty": {
+            "jail": "18 maanden",
+            "fine": "€40.000",
+            "points": "Geen",
+            "seize": "Bedrijfsmiddelen"
+          },
+          "tags": [
+            "bedrijf",
+            "illegaal"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "10.4",
+          "title": "Marktmanipulatie",
+          "description": "Het kunstmatig beïnvloeden van prijzen of handel binnen de economie van GoudHaven.",
+          "penalty": {
+            "jail": "15 maanden",
+            "fine": "€35.000",
+            "points": "Geen",
+            "seize": "Opbrengst"
+          },
+          "tags": [
+            "markt",
+            "manipulatie"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "10.5",
+          "title": "Verduistering",
+          "description": "Het wederrechtelijk toe-eigenen van geld of goederen die men rechtmatig onder zich had.",
+          "penalty": {
+            "jail": "16 maanden",
+            "fine": "€30.000",
+            "points": "Geen",
+            "seize": "Opbrengst"
+          },
+          "tags": [
+            "verduistering"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "10.6",
+          "title": "Identiteitsfraude",
+          "description": "Het gebruiken van persoonsgegevens of documenten van een ander voor financieel of crimineel voordeel.",
+          "penalty": {
+            "jail": "18 maanden",
+            "fine": "€35.000",
+            "points": "Geen",
+            "seize": "Documenten"
+          },
+          "tags": [
+            "identiteit",
+            "fraude"
+          ],
+          "updated": "",
+          "severity": "normaal"
         }
       ]
     },
     {
       "id": "sancties",
-      "title": "Sancties",
-      "description": "Mogelijke aanvullende straffen en maatregelen.",
+      "title": "Sancties & inbeslagname",
+      "icon": "📦",
+      "description": "Aanvullende straffen, maatregelen en beslagregels.",
       "articles": [
         {
-          "number": "13.1",
+          "number": "11.1",
           "title": "Rijontzegging",
-          "description": "Tijdelijke of permanente ontzegging van de bevoegdheid om voertuigen te besturen.",
+          "description": "Tijdelijke of permanente ontzegging van de bevoegdheid voertuigen te besturen.",
           "penalty": {
             "jail": "Geen",
             "fine": "Volgens zaak",
@@ -928,35 +1922,15 @@
             "seize": "Geen"
           },
           "tags": [
-            "rijontzegging",
-            "rijbewijs"
-          ]
+            "rijontzegging"
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
-          "number": "13.2",
-          "title": "Taakstraf",
-          "description": "Een opgelegde taak die als zelfstandige of aanvullende sanctie wordt uitgevoerd.",
-          "penalty": {
-            "jail": "Geen",
-            "fine": "Optioneel",
-            "points": "Taakstraf",
-            "seize": "Geen"
-          },
-          "tags": [
-            "taakstraf"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "inbeslagname",
-      "title": "Inbeslagname",
-      "description": "Regels over het innemen en vervallen verklaren van goederen.",
-      "articles": [
-        {
-          "number": "14.1",
+          "number": "11.2",
           "title": "Beslag op verboden goederen",
-          "description": "Verboden wapens, drugs en direct aan strafbare feiten verbonden goederen worden in beslag genomen.",
+          "description": "Verboden wapens, drugs en direct verbonden goederen worden in beslag genomen.",
           "penalty": {
             "jail": "Geen",
             "fine": "Geen",
@@ -964,14 +1938,15 @@
             "seize": "Verplicht"
           },
           "tags": [
-            "inbeslagname",
-            "verboden goederen"
-          ]
+            "inbeslagname"
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
-          "number": "14.2",
+          "number": "11.3",
           "title": "Beslag op voertuigen",
-          "description": "Een voertuig kan in beslag worden genomen wanneer het structureel of zwaarwegend voor strafbare feiten wordt gebruikt.",
+          "description": "Een voertuig kan worden ingenomen wanneer het zwaarwegend of structureel voor strafbare feiten wordt gebruikt.",
           "penalty": {
             "jail": "Geen",
             "fine": "Volgens zaak",
@@ -979,56 +1954,115 @@
             "seize": "Mogelijk"
           },
           "tags": [
-            "voertuigbeslag",
-            "auto"
-          ]
+            "voertuigbeslag"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "11.4",
+          "title": "Sluiting bedrijfspand",
+          "description": "Een bedrijfspand kan tijdelijk worden gesloten bij ernstige of herhaalde overtredingen.",
+          "penalty": {
+            "jail": "Geen",
+            "fine": "Volgens zaak",
+            "points": "Sluiting",
+            "seize": "Bedrijfsmiddelen mogelijk"
+          },
+          "tags": [
+            "bedrijfspand",
+            "sluiting"
+          ],
+          "updated": "",
+          "severity": "normaal"
+        },
+        {
+          "number": "11.5",
+          "title": "Verbeurdverklaring opbrengst",
+          "description": "Criminele opbrengsten kunnen volledig vervallen aan de overheid.",
+          "penalty": {
+            "jail": "Geen",
+            "fine": "Geen",
+            "points": "Geen",
+            "seize": "Volledige opbrengst"
+          },
+          "tags": [
+            "verbeurdverklaring"
+          ],
+          "updated": "",
+          "severity": "normaal"
         }
       ]
     },
     {
       "id": "verjaring",
       "title": "Verjaring",
+      "icon": "⏳",
       "description": "Termijnen waarbinnen feiten kunnen worden vervolgd.",
       "articles": [
         {
-          "number": "15.1",
-          "title": "Verjaring 1 tot 20 maanden",
+          "number": "12.1",
+          "title": "Verjaring 1 tot en met 20 maanden",
           "description": "Feiten met een straf van 1 tot en met 20 maanden verjaren na 3 dagen.",
-          "penalty": {},
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": "",
+            "seize": ""
+          },
           "tags": [
-            "verjaring",
             "3 dagen"
-          ]
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
-          "number": "15.2",
-          "title": "Verjaring 21 tot 50 maanden",
+          "number": "12.2",
+          "title": "Verjaring 21 tot en met 50 maanden",
           "description": "Feiten met een straf van 21 tot en met 50 maanden verjaren na 5 dagen.",
-          "penalty": {},
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": "",
+            "seize": ""
+          },
           "tags": [
-            "verjaring",
             "5 dagen"
-          ]
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
-          "number": "15.3",
-          "title": "Verjaring 51 tot 100 maanden",
+          "number": "12.3",
+          "title": "Verjaring 51 tot en met 100 maanden",
           "description": "Feiten met een straf van 51 tot en met 100 maanden verjaren na 8 dagen.",
-          "penalty": {},
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": "",
+            "seize": ""
+          },
           "tags": [
-            "verjaring",
             "8 dagen"
-          ]
+          ],
+          "updated": "",
+          "severity": "normaal"
         },
         {
-          "number": "15.4",
+          "number": "12.4",
           "title": "Verjaring boven 100 maanden",
           "description": "Feiten met een straf boven 100 maanden verjaren na 15 dagen.",
-          "penalty": {},
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": "",
+            "seize": ""
+          },
           "tags": [
-            "verjaring",
             "15 dagen"
-          ]
+          ],
+          "updated": "",
+          "severity": "normaal"
         }
       ]
     }
