@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#07090c">
   <title>GoudHaven CMS</title>
-  <link rel="stylesheet" href="admin-v5.css?v=5.0">
+  <link rel="stylesheet" href="admin-v6.css?v=6.0">
 </head>
 <body>
 <div id="loginScreen" class="login-screen">
@@ -27,7 +27,7 @@
   <aside class="sidebar">
     <div class="brand">
       <img src="../assets/goudhaven-logo.png" alt="">
-      <div><strong>GoudHaven</strong><span>Wetboek CMS</span></div>
+      <div><strong>GoudHaven</strong><span>Control Center</span></div>
     </div>
     <nav>
       <button class="nav active" data-view="dashboard">▦ <span>Dashboard</span></button>
@@ -46,40 +46,84 @@
     <header class="topbar">
       <button id="menuButton" class="icon-button">☰</button>
       <div><span class="kicker">Officieel beheerpaneel</span><h1 id="pageTitle">Dashboard</h1></div>
-      <div class="user-chip"><span id="userInitial">G</span><div><b id="userEmail"></b><small>Beheerder</small></div></div>
+      <div class="topbar-right"><div class="system-pill"><i></i><span>Database online</span></div><div class="user-chip"><span id="userInitial">G</span><div><b id="userEmail"></b><small>Beheerder</small></div></div></div>
     </header>
 
     <section id="view-dashboard" class="view active">
-      <div class="welcome">
-        <div><span class="kicker">Welkom terug</span><h2>Wetboek in één overzicht</h2><p>Alles wat je opslaat, wordt direct in de online database bijgewerkt.</p></div>
-        <div class="welcome-actions"><button class="button ghost" id="importWetboekButton">Huidig wetboek importeren</button><button class="button primary" id="quickNewArticle">+ Nieuw artikel</button></div>
+      <div class="welcome v6-welcome">
+        <div>
+          <span class="kicker">Welkom terug</span>
+          <h2>GoudHaven Control Center</h2>
+          <p>Beheer het volledige wetboek vanuit één professionele omgeving.</p>
+        </div>
+        <div class="welcome-actions">
+          <button class="button ghost" id="importWetboekButton">Huidig wetboek importeren</button>
+          <button class="button primary" id="quickNewArticle">+ Nieuw artikel</button>
+        </div>
       </div>
-      <div class="stats">
-        <article><span>▤</span><div><small>Artikelen</small><strong id="statArticles">0</strong></div></article>
-        <article><span>▣</span><div><small>Hoofdstukken</small><strong id="statChapters">0</strong></div></article>
-        <article><span>✓</span><div><small>Gepubliceerd</small><strong id="statPublished">0</strong></div></article>
-        <article><span>◷</span><div><small>Laatste wijziging</small><strong id="statUpdated">—</strong></div></article>
+
+      <div class="stats stats-v6">
+        <article><span>▤</span><div><small>Artikelen</small><strong id="statArticles">0</strong><em>totaal</em></div></article>
+        <article><span>▣</span><div><small>Hoofdstukken</small><strong id="statChapters">0</strong><em>structuur</em></div></article>
+        <article><span>✓</span><div><small>Gepubliceerd</small><strong id="statPublished">0</strong><em>online</em></div></article>
+        <article><span>◌</span><div><small>Concepten</small><strong id="statDrafts">0</strong><em>niet zichtbaar</em></div></article>
+        <article><span>♛</span><div><small>Beheerders</small><strong id="statAdmins">0</strong><em>toegang</em></div></article>
       </div>
+
       <div class="quick-actions">
-      <button id="quickNewArticle2"><span>＋</span><div><b>Nieuw artikel</b><small>Direct toevoegen</small></div></button>
-      <button data-view-jump="articles"><span>⌕</span><div><b>Artikelen zoeken</b><small>Zoeken en filteren</small></div></button>
-      <button data-view-jump="chapters"><span>▣</span><div><b>Hoofdstukken</b><small>Indeling beheren</small></div></button>
-      <button id="printWetboekButton"><span>⎙</span><div><b>Wetboek printen</b><small>PDF via afdrukken</small></div></button>
-    </div>
-    <div class="dashboard-grid">
-        <section class="panel"><div class="panel-head"><h3>Recent gewijzigd</h3><button data-view-jump="changes">Alles bekijken</button></div><div id="recentChanges"></div></section>
-        <section class="panel"><div class="panel-head"><h3>Verdeling per hoofdstuk</h3></div><div id="chapterBreakdown"></div></section>
+        <button id="quickNewArticle2"><span>＋</span><div><b>Nieuw artikel</b><small>Direct toevoegen</small></div></button>
+        <button data-view-jump="articles"><span>⌕</span><div><b>Artikelen zoeken</b><small>Zoeken en filteren</small></div></button>
+        <button data-view-jump="chapters"><span>▣</span><div><b>Hoofdstukken</b><small>Indeling beheren</small></div></button>
+        <button id="exportCsvButton"><span>⇩</span><div><b>Gegevens exporteren</b><small>Download als CSV</small></div></button>
+      </div>
+
+      <div class="analytics-grid">
+        <section class="panel activity-panel">
+          <div class="panel-head">
+            <div><h3>Activiteit afgelopen 7 dagen</h3><small id="activitySummary">0 wijzigingen</small></div>
+          </div>
+          <div id="activityChart" class="activity-chart"></div>
+        </section>
+        <section class="panel severity-panel">
+          <div class="panel-head"><div><h3>Ernstverdeling</h3><small>Alle wetsartikelen</small></div></div>
+          <div class="severity-content">
+            <div id="severityDonut" class="severity-donut"><span id="severityTotal">0</span></div>
+            <div id="severityLegend" class="severity-legend"></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="dashboard-grid">
+        <section class="panel">
+          <div class="panel-head"><h3>Recent gewijzigd</h3><button data-view-jump="changes">Alles bekijken</button></div>
+          <div id="recentChanges"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><h3>Verdeling per hoofdstuk</h3><small id="largestChapter"></small></div>
+          <div id="chapterBreakdown"></div>
+        </section>
       </div>
     </section>
 
     <section id="view-articles" class="view">
       <div class="section-head"><div><p>Zoek, filter en wijzig alle wetsartikelen.</p></div><button class="button primary" id="newArticleButton">+ Nieuw artikel</button></div>
-      <div class="filters">
-        <input id="articleSearch" placeholder="Zoek op nummer, titel of trefwoord...">
+      <div class="filters filters-v6">
+        <input id="articleSearch" placeholder="Zoek op nummer, titel, omschrijving of trefwoord...">
         <select id="chapterFilter"><option value="">Alle hoofdstukken</option></select>
         <select id="statusFilter"><option value="">Alle statussen</option><option value="published">Gepubliceerd</option><option value="draft">Concept</option></select>
+        <select id="severityFilter"><option value="">Alle ernstniveaus</option><option value="normaal">Normaal</option><option value="middel">Middel</option><option value="ernstig">Ernstig</option><option value="zeer ernstig">Zeer ernstig</option></select>
+        <select id="articleSort"><option value="chapter">Volgorde wetboek</option><option value="newest">Laatst gewijzigd</option><option value="number">Artikelnummer</option><option value="title">Titel A-Z</option></select>
       </div>
-      <div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>Artikel</th><th>Titel</th><th>Hoofdstuk</th><th>Status</th><th>Gewijzigd</th><th></th></tr></thead><tbody id="articlesBody"></tbody></table></div></div>
+      <div id="bulkToolbar" class="bulk-toolbar" hidden>
+        <strong><span id="selectedCount">0</span> geselecteerd</strong>
+        <div>
+          <button id="bulkPublish">Publiceren</button>
+          <button id="bulkDraft">Naar concept</button>
+          <button id="bulkDelete" class="danger-text">Verwijderen</button>
+          <button id="clearSelection">Selectie wissen</button>
+        </div>
+      </div>
+      <div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th class="check-col"><input id="selectAllArticles" type="checkbox" aria-label="Alles selecteren"></th><th>Artikel</th><th>Titel</th><th>Hoofdstuk</th><th>Ernst</th><th>Status</th><th>Gewijzigd</th><th></th></tr></thead><tbody id="articlesBody"></tbody></table></div></div>
     </section>
 
     <section id="view-chapters" class="view">
@@ -192,7 +236,7 @@
   <div class="dialog-actions">
     <button type="button" class="button ghost" data-close="articleDialog">Annuleren</button>
     <button class="button ghost" type="button" id="printArticleButton">Print voorbeeld</button>
-    <button class="button danger" type="button" id="deleteArticleButton" hidden>Verwijderen</button>
+    <button class="button ghost" type="button" id="duplicateArticleButton" hidden>Dupliceren</button><button class="button danger" type="button" id="deleteArticleButton" hidden>Verwijderen</button>
     <button class="button primary" type="submit">Opslaan</button>
   </div>
 </form>
@@ -217,6 +261,6 @@
 <div id="toast" class="toast"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../supabase-config.js"></script>
-<script src="admin-v5.js?v=5.0"></script>
+<script src="admin-v6.js?v=6.0"></script>
 </body>
 </html>
