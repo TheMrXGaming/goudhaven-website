@@ -11,8 +11,57 @@ async function boot(){
  const{data:{session}}=await db.auth.getSession();
  if(session&&await isAdmin(session.user.id)){user=session.user;showApp();await loadAll()}
 }
-$("loginForm").onsubmit=async e=>{e.preventDefault();$("loginMessage").textContent="Inloggen...";const{data,error}=await db.auth.signInWithPassword({email:$("email").value,password:$("password").value});if(error){$("loginMessage").textContent="Inloggen mislukt: "+error.message;return}if(!await isAdmin(data.user.id)){await db.auth.signOut();$("loginMessage").textContent="Dit account is geen beheerder.";return}user=data.user;showApp();await loadAll()};
-function showApp(){$("loginScreen").hidden=true;$("app").hidden=false;$("userEmail").textContent=user.email;$("userInitial").textContent=user.email[0].toUpperCase()}
+$("loginForm").onsubmit = async e => {
+  e.preventDefault();
+  const message = $("loginMessage");
+  message.textContent = "Inloggen...";
+
+  try {
+    const { data, error } = await db.auth.signInWithPassword({
+      email: $("email").value.trim(),
+      password: $("password").value
+    });
+
+    if (error) {
+      message.textContent = "Inloggen mislukt: " + error.message;
+      return;
+    }
+
+    const allowed = await isAdmin(data.user.id);
+    if (!allowed) {
+      await db.auth.signOut();
+      message.textContent = "Dit account heeft geen beheerdersrechten.";
+      return;
+    }
+
+    user = data.user;
+    showApp();
+
+    try {
+      await loadAll();
+    } catch (loadError) {
+      console.error("Dashboard laden mislukt:", loadError);
+      toast("Ingelogd, maar niet alle dashboardgegevens konden worden geladen.");
+    }
+  } catch (error) {
+    console.error("Loginfout:", error);
+    message.textContent = "Er ging iets mis tijdens het inloggen. Open F12 voor details.";
+  }
+};
+function showApp(){
+  const loginScreen = $("loginScreen");
+  const app = $("app");
+
+  loginScreen.hidden = true;
+  loginScreen.style.setProperty("display", "none", "important");
+
+  app.hidden = false;
+  app.style.setProperty("display", "grid", "important");
+
+  $("loginMessage").textContent = "";
+  $("userEmail").textContent = user.email;
+  $("userInitial").textContent = user.email[0].toUpperCase();
+}
 $("logoutButton").onclick=async()=>{await db.auth.signOut();location.reload()};
 async function loadAll(){
  const[c,a,l,ad]=await Promise.all([
