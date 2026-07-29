@@ -1,151 +1,121 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Het officiële digitale wetboek en strafregister van GoudHaven.">
-  <meta name="theme-color" content="#080a0d">
-  <title>Wetboek GoudHaven</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07090c">
+<meta name="description" content="Het officiële digitale wetboek van GoudHaven.">
+<title>Wetboek GoudHaven</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app">
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-logo">
-        <img src="assets/goudhaven-logo.png" alt="GoudHaven">
-        <div>
-          <strong>GoudHaven</strong>
-          <span>Wetboek</span>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img src="assets/goudhaven-logo.png" alt="GoudHaven">
+      <div><strong>GoudHaven</strong><span>Wetboek</span></div>
+    </div>
+    <button class="home active" data-chapter="all">⌂ <b>Alle hoofdstukken</b></button>
+    <div class="side-label">Hoofdstukken</div>
+    <nav id="chapterNav"></nav>
+    <div class="quick">
+      <strong>Snel naar artikel</strong>
+      <p>Voer bijvoorbeeld 8.6 in.</p>
+      <div><input id="quickInput" placeholder="Bijv. 8.6"><button id="quickButton">→</button></div>
+    </div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <button id="menuButton" class="menu">☰</button>
+      <nav>
+        <a href="#wetboek" class="active">⚖ Wetboek</a>
+        <a href="#wijzigingen">◷ Wijzigingen</a>
+        <a href="#calculator">∑ Strafcalculator</a>
+        <a href="#over">ⓘ Over</a>
+      </nav>
+      <div class="top-actions">
+        <button id="themeButton">◐</button>
+        <a href="../">Terug naar website</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <span>Officieel digitaal wetboek</span>
+        <h1>Wetboek <em>GoudHaven</em></h1>
+        <p>Zoek direct op artikelnummer, strafbaar feit, trefwoord, boete of celstraf.</p>
+        <div class="search">
+          <b>⌕</b>
+          <input id="searchInput" type="search" placeholder="Zoek bijvoorbeeld: coke, lean, meth, gijzeling...">
+          <kbd>Ctrl K</kbd>
         </div>
       </div>
-
-      <button class="sidebar-home active" data-chapter="all">
-        <span>⌂</span>
-        <b>Alle hoofdstukken</b>
-      </button>
-
-      <div class="sidebar-title">Hoofdstukken</div>
-      <nav id="chapterNav"></nav>
-
-      <div class="quick-jump">
-        <strong>Snel naar artikel</strong>
-        <p>Voer een artikelnummer in, bijvoorbeeld 9.4.</p>
-        <div>
-          <input id="quickInput" placeholder="Bijv. 9.4">
-          <button id="quickButton">→</button>
-        </div>
+      <div class="hero-visual">
+        <img src="assets/goudhaven-logo.png" alt="">
+        <div class="city"></div>
       </div>
-    </aside>
+    </section>
 
-    <main class="main">
-      <header class="topbar">
-        <button id="menuButton" class="menu-button">☰</button>
-        <nav>
-          <a class="active" href="#wetboek">⚖ Wetboek</a>
-          <a href="#wijzigingen">◷ Wijzigingen</a>
-          <a href="#calculator">∑ Strafcalculator</a>
-          <a href="#over">ⓘ Over</a>
-        </nav>
-        <div class="topbar-actions">
-          <button id="themeButton" title="Thema wijzigen">◐</button>
-          <a href="../">Terug naar website</a>
-        </div>
-      </header>
+    <section class="stats">
+      <article><span>▤</span><div><small>Totaal artikelen</small><strong id="articleCount">0</strong></div></article>
+      <article><span>♜</span><div><small>Hoofdstukken</small><strong id="chapterCount">0</strong></div></article>
+      <article><span>▣</span><div><small>Laatst bijgewerkt</small><strong id="updatedDate">—</strong></div></article>
+      <article><span>⬟</span><div><small>Versie</small><strong id="version">—</strong></div></article>
+    </section>
 
-      <section class="hero">
-        <div class="hero-content">
-          <span class="eyebrow">GoudHaven Roleplay</span>
-          <h1>Wetboek <span>GoudHaven</span></h1>
-          <p>Zoek snel op artikelnummer, strafbaar feit, trefwoord, boete of celstraf. De resultaten worden direct bijgewerkt terwijl je typt.</p>
-          <div class="search-box">
-            <span>⌕</span>
-            <input id="searchInput" type="search" placeholder="Zoek bijvoorbeeld: coke, lean, meth, gijzeling, artikel 9.4...">
-            <kbd>Ctrl K</kbd>
-          </div>
-        </div>
-        <div class="hero-art">
-          <img src="assets/goudhaven-logo.png" alt="">
-          <div class="skyline"></div>
-        </div>
-      </section>
+    <section class="dashboard">
+      <article class="panel">
+        <header><h2>🔥 Meest gezocht</h2></header>
+        <div class="popular" id="popularTags"></div>
+      </article>
+      <article class="panel" id="wijzigingen">
+        <header><h2>◷ Recent gewijzigd</h2></header>
+        <div id="recentList"></div>
+      </article>
+    </section>
 
-      <section class="stats">
-        <article><span>▤</span><div><small>Totaal artikelen</small><strong id="articleCount">0</strong></div></article>
-        <article><span>♜</span><div><small>Hoofdstukken</small><strong id="chapterCount">0</strong></div></article>
-        <article><span>▣</span><div><small>Laatst bijgewerkt</small><strong id="updatedDate">—</strong></div></article>
-        <article><span>⬟</span><div><small>Wetboek versie</small><strong id="version">—</strong></div></article>
-      </section>
+    <section class="important">
+      <span>⬟</span>
+      <div><strong>Belangrijk</strong><p>Onwetendheid ontslaat niet van straf. De maximale reguliere celstraf bedraagt 60 maanden, tenzij de Hoofdofficier van Justitie toestemming geeft om hiervan af te wijken.</p></div>
+    </section>
 
-      <section class="dashboard">
-        <article class="panel">
-          <div class="panel-header"><h2>Meest gezocht</h2></div>
-          <div class="popular-tags" id="popularTags"></div>
-        </article>
-        <article class="panel" id="wijzigingen">
-          <div class="panel-header"><h2>Laatst bijgewerkt</h2></div>
-          <div id="recentList"></div>
-        </article>
-      </section>
+    <section class="laws" id="wetboek">
+      <div class="section-title">
+        <div><span>Wetboek</span><h2 id="resultTitle">Alle artikelen</h2><p id="resultCount"></p></div>
+        <div><button id="clearSearch" hidden>Zoeken wissen</button><button id="expandAll">Alles openen</button></div>
+      </div>
+      <div class="filter-row" id="filterRow"></div>
+      <div id="lawContainer"></div>
+      <div id="emptyState" class="empty" hidden><b>⌕</b><h3>Geen artikelen gevonden</h3><p>Probeer een ander trefwoord.</p></div>
+    </section>
 
-      <section class="important">
-        <span>⬟</span>
+    <section class="calculator" id="calculator">
+      <div class="section-title"><div><span>Hulpmiddel</span><h2>Strafcalculator 2.0</h2><p>Selecteer artikelen en eventuele verzwarende omstandigheden.</p></div></div>
+      <div class="calc-layout">
         <div>
-          <strong>Belangrijk</strong>
-          <p>Onwetendheid ontslaat niet van straf. De maximale reguliere celstraf bedraagt 60 maanden, tenzij de Hoofdofficier van Justitie toestemming geeft om hiervan af te wijken.</p>
-        </div>
-      </section>
-
-      <section class="content-section" id="wetboek">
-        <div class="section-header">
-          <div>
-            <span>Wetboek</span>
-            <h2 id="resultTitle">Alle artikelen</h2>
-            <p id="resultCount"></p>
+          <div class="modifiers">
+            <label><input type="checkbox" id="recidive"> Recidive (+50%)</label>
+            <label><input type="checkbox" id="weaponUsed"> Wapen gebruikt (+10%)</label>
+            <label><input type="checkbox" id="officerVictim"> Ambtenaar slachtoffer (+15%)</label>
           </div>
-          <div class="section-actions">
-            <button id="clearSearch" hidden>Zoekopdracht wissen</button>
-            <button id="expandAll">Alles openen</button>
-          </div>
+          <div id="calculatorList" class="calc-list"></div>
         </div>
+        <aside class="calc-total">
+          <small>Indicatieve totaalsom</small>
+          <strong id="totalJail">0 maanden</strong>
+          <span id="totalFine">€0</span>
+          <p id="selectedCount">0 artikelen geselecteerd</p>
+          <button id="clearCalculator">Selectie wissen</button>
+        </aside>
+      </div>
+    </section>
 
-        <div id="lawContainer"></div>
-
-        <div class="empty" id="emptyState" hidden>
-          <span>⌕</span>
-          <h3>Geen artikelen gevonden</h3>
-          <p>Probeer een breder trefwoord of ander artikelnummer.</p>
-        </div>
-      </section>
-
-      <section class="calculator" id="calculator">
-        <div class="section-header">
-          <div>
-            <span>Hulpmiddel</span>
-            <h2>Strafcalculator</h2>
-            <p>Selecteer artikelen om een indicatief totaal te berekenen.</p>
-          </div>
-        </div>
-        <div class="calculator-grid">
-          <div class="calculator-list" id="calculatorList"></div>
-          <aside class="calculator-total">
-            <small>Indicatieve totaalsom</small>
-            <strong id="totalJail">0 maanden</strong>
-            <span id="totalFine">€0</span>
-            <p id="selectedCount">0 artikelen geselecteerd</p>
-            <button id="clearCalculator">Selectie wissen</button>
-          </aside>
-        </div>
-      </section>
-
-      <footer id="over">
-        <span>© <span id="year"></span> GoudHaven</span>
-        <span>Waar jouw verhaal begint.</span>
-      </footer>
-    </main>
-  </div>
-
-  <div id="overlay" class="overlay"></div>
-  <div id="toast" class="toast"></div>
-  <script src="script.js"></script>
+    <footer id="over"><span>© <span id="year"></span> GoudHaven</span><span>Waar jouw verhaal begint.</span></footer>
+  </main>
+</div>
+<div class="overlay" id="overlay"></div>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
 </body>
 </html>
