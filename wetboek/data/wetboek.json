@@ -1,1 +1,298 @@
-
+{
+  "meta": {
+    "title": "Wetboek GoudHaven Roleplay",
+    "version": "1.0",
+    "lastUpdated": "29 juli 2026",
+    "notice": {
+      "title": "Maximale celstraf",
+      "text": "De maximale reguliere celstraf bedraagt 60 maanden. Alleen met toestemming van de Hoofdofficier van Justitie mag hiervan worden afgeweken."
+    }
+  },
+  "chapters": [
+    {
+      "id": "algemene-bepalingen",
+      "title": "Algemene bepalingen",
+      "description": "Basisregels die gelden bij de toepassing van het volledige wetboek.",
+      "articles": [
+        {
+          "number": "1.1",
+          "title": "Maximale straf",
+          "description": "De maximale reguliere celstraf bedraagt 60 maanden. Alleen met toestemming van de Hoofdofficier van Justitie mag hiervan worden afgeweken.",
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": ""
+          },
+          "notes": "Dit artikel begrenst de totale reguliere celstraf per zaak.",
+          "tags": [
+            "maximumstraf",
+            "hoofdofficier",
+            "celstraf"
+          ]
+        },
+        {
+          "number": "1.2",
+          "title": "Wijziging van wetgeving",
+          "description": "Wanneer wetgeving na het plegen van een strafbaar feit wordt gewijzigd, wordt de voor de verdachte meest gunstige bepaling toegepast.",
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": ""
+          },
+          "tags": [
+            "wetswijziging",
+            "verdachte",
+            "gunstigste bepaling"
+          ]
+        },
+        {
+          "number": "1.3",
+          "title": "Belangenverstrengeling",
+          "description": "Staffleden en overheidsmedewerkers behandelen geen zaak waarbij zijzelf, familieleden, vrienden of andere direct betrokken bekenden partij zijn.",
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": ""
+          },
+          "tags": [
+            "staff",
+            "onpartijdigheid",
+            "belangenverstrengeling"
+          ]
+        },
+        {
+          "number": "1.4",
+          "title": "Minderjarigen",
+          "description": "Minderjarigen worden binnen GoudHaven strafrechtelijk behandeld als volwassenen.",
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": ""
+          },
+          "tags": [
+            "minderjarig",
+            "volwassenen",
+            "strafrecht"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "verjaring",
+      "title": "Verjaring",
+      "description": "Termijnen waarbinnen een strafbaar feit vervolgd kan worden.",
+      "articles": [
+        {
+          "number": "2.1",
+          "title": "Verjaringstermijnen",
+          "description": "De verjaringstermijn wordt bepaald op basis van de maximale celstraf:\n\n• 1 tot en met 20 maanden: 3 dagen\n• 21 tot en met 50 maanden: 5 dagen\n• 51 tot en met 100 maanden: 8 dagen\n• Meer dan 100 maanden: 15 dagen",
+          "penalty": {
+            "jail": "",
+            "fine": "",
+            "points": ""
+          },
+          "notes": "Na het verstrijken van de toepasselijke termijn kan het feit niet meer regulier worden vervolgd.",
+          "tags": [
+            "verjaring",
+            "termijn",
+            "vervolging"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strafsoorten",
+      "title": "Strafsoorten",
+      "description": "Mogelijke sancties en maatregelen binnen GoudHaven.",
+      "articles": [
+        {
+          "number": "3.1",
+          "title": "Waarschuwing",
+          "description": "Een waarschuwing kan worden opgelegd bij lichte overtredingen of wanneer de omstandigheden daartoe aanleiding geven.",
+          "penalty": {
+            "jail": "Geen",
+            "fine": "Geen",
+            "points": "Geen"
+          },
+          "tags": [
+            "waarschuwing",
+            "lichte overtreding"
+          ]
+        },
+        {
+          "number": "3.2",
+          "title": "Taakstraf",
+          "description": "Een taakstraf kan zelfstandig of in combinatie met een andere straf worden opgelegd.",
+          "penalty": {
+            "jail": "Volgens uitspraak",
+            "fine": "Optioneel",
+            "points": "Optioneel"
+          },
+          "tags": [
+            "taakstraf",
+            "sanctie"
+          ]
+        },
+        {
+          "number": "3.3",
+          "title": "Geldboete",
+          "description": "Een geldboete wordt opgelegd conform het bedrag dat bij het betreffende artikel staat vermeld.",
+          "penalty": {
+            "jail": "Optioneel",
+            "fine": "Volgens artikel",
+            "points": "Optioneel"
+          },
+          "tags": [
+            "geldboete",
+            "boete",
+            "sanctie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vrijheid-en-veiligheid",
+      "title": "Vrijheid en veiligheid",
+      "description": "Strafbare feiten gericht tegen personen en hun persoonlijke vrijheid.",
+      "articles": [
+        {
+          "number": "4.1",
+          "title": "Bedreiging",
+          "description": "Het opzettelijk bedreigen van een persoon met geweld, zware mishandeling, ontvoering of de dood.",
+          "penalty": {
+            "jail": "10 maanden",
+            "fine": "€15.000",
+            "points": "Geen"
+          },
+          "tags": [
+            "bedreiging",
+            "geweld",
+            "persoon"
+          ]
+        },
+        {
+          "number": "4.2",
+          "title": "Mishandeling",
+          "description": "Het opzettelijk toebrengen van lichamelijk letsel of pijn aan een ander.",
+          "penalty": {
+            "jail": "15 maanden",
+            "fine": "€20.000",
+            "points": "Geen"
+          },
+          "tags": [
+            "mishandeling",
+            "letsel",
+            "geweld"
+          ]
+        },
+        {
+          "number": "4.3",
+          "title": "Gijzeling",
+          "description": "Het wederrechtelijk van de vrijheid beroven of beroofd houden van een persoon met als doel druk uit te oefenen, eisen te stellen of een voordeel te verkrijgen.",
+          "penalty": {
+            "jail": "25 maanden",
+            "fine": "€35.000",
+            "points": "Geen"
+          },
+          "notes": "Brandweermedewerkers die aantoonbaar in dienst zijn, mogen niet worden gegijzeld omdat deze functie onder de overheid valt.",
+          "tags": [
+            "gijzeling",
+            "ontvoering",
+            "brandweer",
+            "overheid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "verkeer",
+      "title": "Verkeerswet",
+      "description": "Regels voor veilig en verantwoord gebruik van voertuigen.",
+      "articles": [
+        {
+          "number": "5.1",
+          "title": "Roekeloos rijgedrag",
+          "description": "Het besturen van een voertuig op een wijze die een ernstig gevaar vormt voor andere weggebruikers.",
+          "penalty": {
+            "jail": "5 maanden",
+            "fine": "€12.500",
+            "points": "2 punten"
+          },
+          "tags": [
+            "verkeer",
+            "roekeloos",
+            "rijgedrag"
+          ]
+        },
+        {
+          "number": "5.2",
+          "title": "Rijden zonder geldig rijbewijs",
+          "description": "Het besturen van een motorvoertuig zonder daarvoor over een geldig rijbewijs te beschikken.",
+          "penalty": {
+            "jail": "3 maanden",
+            "fine": "€10.000",
+            "points": "Geen"
+          },
+          "tags": [
+            "rijbewijs",
+            "voertuig",
+            "verkeer"
+          ]
+        },
+        {
+          "number": "5.3",
+          "title": "Vluchten voor een stopteken",
+          "description": "Het niet opvolgen van een rechtsgeldig stopteken van politie of Koninklijke Marechaussee.",
+          "penalty": {
+            "jail": "12 maanden",
+            "fine": "€18.000",
+            "points": "3 punten"
+          },
+          "tags": [
+            "stopteken",
+            "vluchten",
+            "politie",
+            "kmar"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wapens",
+      "title": "Wapenwet",
+      "description": "Verboden bezit, gebruik en handel van wapens en munitie.",
+      "articles": [
+        {
+          "number": "6.1",
+          "title": "Verboden wapenbezit",
+          "description": "Het zonder geldige bevoegdheid voorhanden hebben of dragen van een verboden wapen.",
+          "penalty": {
+            "jail": "20 maanden",
+            "fine": "€30.000",
+            "points": "Geen"
+          },
+          "tags": [
+            "wapen",
+            "wapenbezit",
+            "vuurwapen"
+          ]
+        },
+        {
+          "number": "6.2",
+          "title": "Gebruik van een vuurwapen",
+          "description": "Het afvuren of dreigend gebruiken van een vuurwapen zonder rechtvaardigingsgrond.",
+          "penalty": {
+            "jail": "30 maanden",
+            "fine": "€45.000",
+            "points": "Geen"
+          },
+          "tags": [
+            "vuurwapen",
+            "schieten",
+            "wapengebruik"
+          ]
+        }
+      ]
+    }
+  ]
+}
