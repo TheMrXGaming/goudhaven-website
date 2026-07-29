@@ -3,10 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wetboek GoudHaven Roleplay</title>
+  <meta name="description" content="Het officiële digitale wetboek van GoudHaven Roleplay. Zoek snel op artikelen, trefwoorden, boetes en celstraffen.">
+  <meta name="theme-color" content="#101114">
+  <title>Wetboek | GoudHaven Roleplay</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Wetboek GoudHaven Roleplay</h1>
-  <p>Het officiële wetboek van GoudHaven.</p>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="../" aria-label="Terug naar GoudHaven">
+        <img src="../goudhaven-logo.png" alt="Logo GoudHaven">
+        <span>
+          <strong>GoudHaven</strong>
+          <small>Officieel wetboek</small>
+        </span>
+      </a>
+
+      <div class="topbar-actions">
+        <button class="icon-button mobile-menu-button" id="menuButton" aria-label="Menu openen" aria-expanded="false">
+          ☰
+        </button>
+        <button class="icon-button" id="themeButton" aria-label="Thema wijzigen" title="Thema wijzigen">
+          ◐
+        </button>
+        <a class="back-button" href="../">Terug naar website</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">GoudHaven Roleplay</span>
+        <h1>Wetboek &amp; strafregister</h1>
+        <p>
+          Zoek snel op artikelnummer, strafbaar feit, trefwoord, boete of celstraf.
+          De zoekresultaten worden direct bijgewerkt terwijl je typt.
+        </p>
+
+        <div class="search-wrap">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Zoek bijvoorbeeld: gijzeling, wapen, artikel 3.7..."
+            autocomplete="off"
+            aria-label="Doorzoek het wetboek"
+          >
+          <kbd>Ctrl K</kbd>
+        </div>
+
+        <div class="hero-stats">
+          <div><strong id="articleCount">0</strong><span>artikelen</span></div>
+          <div><strong id="chapterCount">0</strong><span>hoofdstukken</span></div>
+          <div><strong id="updatedDate">—</strong><span>laatst bijgewerkt</span></div>
+        </div>
+      </div>
+
+      <div class="hero-emblem" aria-hidden="true">
+        <div class="emblem-ring">
+          <span>GH</span>
+          <small>WETBOEK</small>
+        </div>
+      </div>
+    </section>
+
+    <main class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <span>Inhoudsopgave</span>
+          <button id="closeMenuButton" aria-label="Menu sluiten">×</button>
+        </div>
+
+        <nav id="chapterNav" aria-label="Hoofdstukken"></nav>
+
+        <div class="sidebar-card">
+          <strong>Belangrijk</strong>
+          <p>
+            Dit wetboek is bedoeld voor roleplay binnen GoudHaven. De meest recente
+            versie op deze pagina is leidend.
+          </p>
+        </div>
+      </aside>
+
+      <section class="content">
+        <div class="content-toolbar">
+          <div>
+            <span id="resultLabel">Alle artikelen</span>
+            <small id="resultCount"></small>
+          </div>
+
+          <div class="toolbar-actions">
+            <button id="expandAllButton" type="button">Alles openen</button>
+            <button id="clearSearchButton" type="button" hidden>Zoekopdracht wissen</button>
+          </div>
+        </div>
+
+        <div id="noticeContainer"></div>
+        <div id="lawContainer"></div>
+
+        <div id="emptyState" class="empty-state" hidden>
+          <div>🔎</div>
+          <h2>Geen artikelen gevonden</h2>
+          <p>Probeer een ander artikelnummer of een breder trefwoord.</p>
+          <button type="button" id="emptyClearButton">Zoekopdracht wissen</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="currentYear"></span> GoudHaven Roleplay</span>
+      <span>Waar jouw verhaal begint.</span>
+    </footer>
+  </div>
+
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
